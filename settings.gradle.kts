@@ -22,6 +22,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "SnapEat"
 //include(":app")
-include(":app",":gaugelibrary")
+include(":app", ":gaugelibrary")
 
  
