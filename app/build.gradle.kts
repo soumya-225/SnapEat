@@ -2,8 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
-    //id("com.google.gms.google-services")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.0"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
 
 android {
@@ -61,11 +60,15 @@ dependencies {
     implementation(libs.simple.gauge.android)
     implementation(libs.mpandroidchart)
     implementation(libs.androidx.camera.view)
-
     implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.extensions)
+    implementation(libs.guava)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 
     implementation(libs.glide)
     implementation(libs.gson)
@@ -73,6 +76,4 @@ dependencies {
     implementation("com.cloudinary:cloudinary-android-download:2.5.0")
     implementation("com.cloudinary:cloudinary-android-preprocess:2.5.0")
     implementation(libs.number.picker)
-
-
 }
