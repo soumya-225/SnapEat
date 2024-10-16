@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">SnapEat</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="report">Report</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_profile">User Profile</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="my_profile">My Profile</string>
+    <string name="account">Account</string>
+    <string name="notifications">Notifications</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="logout">Logout</string>
+    <string name="made_with_by_pookiecoderz">Made with ❤ by PookieCoderz</string>
 </resources>
