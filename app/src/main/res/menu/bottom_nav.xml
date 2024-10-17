@@ -10,7 +10,7 @@
     <item
         android:title="@string/report"
         android:icon="@drawable/baseline_article_24"
-        android:id="@+id/tracking"
+        android:id="@+id/report"
         app:showAsAction="ifRoom"/>
 
     <item

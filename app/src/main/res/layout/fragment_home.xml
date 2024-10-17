@@ -66,8 +66,11 @@
                             app:layout_constraintEnd_toStartOf="@id/iv_user">
 
                             <LinearLayout
+                                android:id="@+id/ll_reward"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:clickable="true"
+                                android:focusable="true"
                                 android:padding="10dp">
 
                                 <TextView
@@ -129,6 +132,8 @@
                         android:layout_marginEnd="20dp"
                         android:layout_marginBottom="20dp"
                         app:cardCornerRadius="15dp"
+                        android:clickable="true"
+                        android:focusable="true"
                         app:cardElevation="0dp"
                         app:layout_constraintTop_toBottomOf="@id/tv_track_text">
 
@@ -154,6 +159,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
                                 android:paddingTop="10dp"
                                 android:text="100 of 2000"
                                 android:textSize="16sp"
@@ -165,6 +171,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
                                 android:text="Cal eaten"
                                 android:textSize="12sp"
                                 app:layout_constraintStart_toEndOf="@id/progress_circular"
