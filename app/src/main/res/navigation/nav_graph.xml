@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.sks225.snapeat.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_rewardFragment"
+            app:destination="@id/rewardFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_foodLogFragment"
+            app:destination="@id/foodLogFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_preSnapFragment"
+            app:destination="@id/preSnapFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_trackWaterFragment"
+            app:destination="@id/trackWaterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingFragment2"
+        android:name="com.sks225.snapeat.auth.OnboardingFragment"
+        android:label="OnboardingFragment" >
+        <action
+            android:id="@+id/action_onboardingFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_onboardingFragment2_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.sks225.snapeat.auth.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_ageFragment"
+            app:destination="@id/ageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.sks225.snapeat.auth.SignupFragment"
+        android:label="SignupFragment" />
+    <fragment
+        android:id="@+id/ageFragment"
+        android:name="com.sks225.snapeat.auth.AgeFragment"
+        android:label="AgeFragment" >
+        <action
+            android:id="@+id/action_ageFragment_to_weightFragment"
+            app:destination="@id/weightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weightFragment"
+        android:name="com.sks225.snapeat.auth.WeightFragment"
+        android:label="WeightFragment" >
+        <action
+            android:id="@+id/action_weightFragment_to_heightFragment"
+            app:destination="@id/heightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/heightFragment"
+        android:name="com.sks225.snapeat.auth.HeightFragment"
+        android:label="HeightFragment" >
+        <action
+            android:id="@+id/action_heightFragment_to_homeFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardFragment"
+        android:name="com.sks225.snapeat.RewardFragment"
+        android:label="fragment_reward"
+        tools:layout="@layout/fragment_reward" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.sks225.snapeat.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/foodLogFragment"
+        android:name="com.sks225.snapeat.FoodLogFragment"
+        android:label="fragment_food_log"
+        tools:layout="@layout/fragment_food_log" >
+        <action
+            android:id="@+id/action_foodLogFragment_to_preSnapFragment"
+            app:destination="@id/preSnapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/preSnapFragment"
+        android:name="com.sks225.snapeat.PreSnapFragment"
+        android:label="fragment_pre_snap"
+        tools:layout="@layout/fragment_pre_snap" >
+        <action
+            android:id="@+id/action_preSnapFragment_to_snapFragment"
+            app:destination="@id/snapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/snapFragment"
+        android:name="com.sks225.snapeat.SnapFragment"
+        android:label="SnapFragment" >
+        <action
+            android:id="@+id/action_snapFragment_to_postSnapFragment"
+            app:destination="@id/postSnapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postSnapFragment"
+        android:name="com.sks225.snapeat.PostSnapFragment"
+        android:label="fragment_post_snap"
+        tools:layout="@layout/fragment_post_snap" >
+        <action
+            android:id="@+id/action_postSnapFragment_to_foodLogFragment"
+            app:destination="@id/foodLogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trackWaterFragment"
+        android:name="com.sks225.snapeat.TrackWaterFragment"
+        android:label="TrackWaterFragment" />
+</navigation>

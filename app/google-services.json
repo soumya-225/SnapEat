@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "593786492303",
+    "project_id": "snapeat-5da64",
+    "storage_bucket": "snapeat-5da64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593786492303:android:0b4fa728396fdd030827fa",
+        "android_client_info": {
+          "package_name": "com.sks225.snapeat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "593786492303-3arbu9ha04spminsblfukcioiiadct4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCig-mrv9dJmeEr0wv3QJusdoRzOQ68Vhg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "593786492303-3arbu9ha04spminsblfukcioiiadct4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
