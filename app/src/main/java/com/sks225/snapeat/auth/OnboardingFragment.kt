@@ -29,7 +29,7 @@ class OnboardingFragment : Fragment() {
         binding = FragmentOnboardingBinding.inflate(inflater, container, false)
 
         binding.btnNext.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingFragment_to_loginFragment)
+            //findNavController().navigate(R.id.action_onboardingFragment_to_loginFragment)
         }
 
         val images = arrayOf(

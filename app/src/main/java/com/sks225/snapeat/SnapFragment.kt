@@ -18,6 +18,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.sks225.snapeat.databinding.FragmentSnapBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -41,7 +42,9 @@ class SnapFragment : Fragment() {
         else
             requestPermissions()
 
-        binding.imageCaptureButton.setOnClickListener { takePhoto() }
+        binding.imageCaptureButton.setOnClickListener {
+            takePhoto()
+        }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
         return binding.root
@@ -78,6 +81,7 @@ class SnapFragment : Fragment() {
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
+                    findNavController().navigate(R.id.action_snapFragment_to_postSnapFragment)
                 }
             }
         )
