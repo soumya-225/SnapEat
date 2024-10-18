@@ -25,6 +25,7 @@ class FoodRecognitionRepository(private val foodRecognitionApi: FoodRecognitionA
         val multipartBody = MultipartBody.Part.createFormData(
             "file", "image", file.asRequestBody(mimeType?.toMediaTypeOrNull())
         )
-        return foodRecognitionApi.getFoodNameFromImage(multipartBody)
+        val response = foodRecognitionApi.getFoodNameFromImage(multipartBody)
+        return response.body()?.string() ?: ""
     }
 }

@@ -136,6 +136,9 @@
         <action
             android:id="@+id/action_postSnapFragment_to_foodLogFragment"
             app:destination="@id/foodLogFragment" />
+        <argument
+            android:name="imageUri"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/trackWaterFragment"

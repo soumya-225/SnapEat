@@ -58,14 +58,23 @@
         android:text="OR"
         android:textSize="20sp" />
 
-    <androidx.camera.view.PreviewView
-        android:id="@+id/viewFinder"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:layout_margin="10dp"
         android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/round_corner_bg">
+        android:focusable="true">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/viewFinder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/round_corner_bg" />
+
+        <SurfaceView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#99000000" />
 
         <ImageView
             android:layout_width="40dp"
@@ -80,15 +89,15 @@
             android:layout_marginBottom="72dp"
             android:text="Click a Snap and Track"
             android:textColor="#FFFFFF" />
-    </androidx.camera.view.PreviewView>
+    </FrameLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Snapped Foods"
         android:padding="10dp"
-        android:textStyle="bold"
-        android:textSize="16sp"/>
+        android:text="Your Snapped Foods"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
