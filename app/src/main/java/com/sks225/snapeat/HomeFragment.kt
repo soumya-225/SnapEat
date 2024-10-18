@@ -82,8 +82,14 @@ class HomeFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
 
         binding.tvTrackText.text = "How about tracking your ${getGreeting()} meal?"
 
+        getTodayStats()
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getTodayStats()
     }
 
     private fun getGreeting(): String {
@@ -94,6 +100,56 @@ class HomeFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
             in 0..11 -> "Morning"
             in 12..17 -> "Afternoon"
             else -> "Evening"
+        }
+    }
+
+    private fun isToday(timeMillis: Long): Boolean {
+        // Get an instance of the Calendar
+        val calendar = Calendar.getInstance()
+
+        // Get today's date (midnight, i.e., time part set to 0)
+        val today = Calendar.getInstance()
+        today.set(Calendar.HOUR_OF_DAY, 0)
+        today.set(Calendar.MINUTE, 0)
+        today.set(Calendar.SECOND, 0)
+        today.set(Calendar.MILLISECOND, 0)
+
+        // Get the date from the provided timeMillis (without time part)
+        calendar.timeInMillis = timeMillis
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+
+        // Compare the two dates
+        return today.timeInMillis == calendar.timeInMillis
+    }
+
+    private fun getTodayStats() {
+        viewModel.getMealsData { meals, healthData ->
+            val caloriesRequired = ((healthData.weight * 10 + 6.25 * healthData.height - 5 * healthData.age + 5) * 1.46).toInt()
+            val proteinRequired = healthData.weight * 0.9
+            val carbsRequired = caloriesRequired / 8.0
+            val fatRequired = 0.3 * caloriesRequired / 9.0
+            val fiberRequired = 14 * caloriesRequired / 1000.0
+
+            var calories = 0.0
+            var carbs = 0.0
+            var fat = 0.0
+            var protein = 0.0
+            var fiber = 0.0
+            for (meal in meals) {
+                if (!isToday(meal.timeMillis))
+                    continue
+
+                calories += meal.foodCalories
+                carbs += meal.foodCarbs
+                fat += meal.foodFat
+                protein += meal.foodProtein
+                fiber += meal.foodFiber
+            }
+            binding.tvCal.text = "${calories.toInt()} of $caloriesRequired"
+            
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.sks225.snapeat.data
+package com.sks225.snapeat.repository
 
 import com.sks225.snapeat.network.FoodNutritionApi
 import com.sks225.snapeat.network.FoodRecognitionApi
@@ -22,4 +22,5 @@ class AppContainer {
     private val foodRecognitionApi by lazy { recognitionApiRetrofit.create(FoodRecognitionApi::class.java) }
     val foodNutritionRepository by lazy { FoodNutritionRepository(foodNutritionApi) }
     val foodRecognitionRepository by lazy { FoodRecognitionRepository(foodRecognitionApi) }
+    val userRepository by lazy { UserRepository() }
 }

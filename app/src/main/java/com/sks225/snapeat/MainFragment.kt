@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.sks225.snapeat.adapter.AdapterViewPager
 import com.sks225.snapeat.databinding.FragmentMainBinding
+import com.sks225.snapeat.model.MealInfo
 import com.sks225.snapeat.repository.BmiRepository
 import com.sks225.snapeat.repository.UserRepository
 import com.sks225.snapeat.viewModel.MainFragmentViewModel
@@ -78,6 +79,7 @@ class MainFragment : Fragment() {
             }
             true
         }
+
         return binding.root
     }
 }
