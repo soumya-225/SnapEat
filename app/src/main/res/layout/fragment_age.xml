@@ -38,8 +38,5 @@
         android:gravity="center"
         android:text="Next"
         android:textSize="24sp"
-        android:textStyle="bold"
-        />
-
-
+        android:textStyle="bold" />
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -20,12 +21,14 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var viewModel: LoginViewModel
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
+        navController = findNavController()
 
         binding = FragmentLoginBinding.inflate(layoutInflater)
         auth = Firebase.auth
@@ -39,10 +42,12 @@ class LoginFragment : Fragment() {
 
         binding.btnLogin.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
-            viewModel.login(binding, requireActivity())
+            viewModel.login(binding, requireActivity()) {
+                navController.navigate(R.id.action_loginFragment_to_mainFragment)
+            }
         }
         binding.redirectSignup.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
+            navController.navigate(R.id.action_loginFragment_to_signupFragment)
         }
 
         return binding.root
