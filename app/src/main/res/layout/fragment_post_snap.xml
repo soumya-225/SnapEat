@@ -63,12 +63,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:textAllCaps="true"
                 android:text="8:04 PM"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
+                android:id="@+id/sp_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -127,25 +129,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/et_quantity"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/baseline_check_circle_24"
                 android:drawablePadding="10dp"
                 android:padding="10dp"
-                android:text="Apple"
+                android:inputType="numberDecimal"
+                android:hint="Quantity"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/snap_image"
                 app:layout_constraintTop_toBottomOf="@id/tv_edit_quantity" />
 
-            <TextView
+            <Spinner
+                android:id="@+id/sp_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/baseline_edit_24"
                 android:drawablePadding="10dp"
                 android:padding="10dp"
-                android:text="Change"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
