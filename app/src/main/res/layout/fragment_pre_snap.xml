@@ -100,10 +100,10 @@
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_prev_snap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        tools:itemCount="1"
-        tools:listitem="@layout/rv_food_item" />
+        tools:listitem="@layout/rv_snap_item" />
 
 </LinearLayout>

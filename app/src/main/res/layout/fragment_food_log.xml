@@ -130,12 +130,13 @@
                         android:padding="10dp">
 
                         <TextView
+                            android:id="@+id/tv_protein"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Proteins: 10%" />
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
-                            android:id="@+id/linear_progress1"
+                            android:id="@+id/linear_progress_protein"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:max="200"
@@ -152,12 +153,13 @@
                         android:padding="10dp">
 
                         <TextView
+                            android:id="@+id/tv_fat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Fats: 20%" />
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
-                            android:id="@+id/linear_progress2"
+                            android:id="@+id/linear_progress_fat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:max="100"
@@ -174,12 +176,13 @@
                         android:padding="10dp">
 
                         <TextView
+                            android:id="@+id/tv_carb"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Carbs: 40%" />
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
-                            android:id="@+id/linear_progress3"
+                            android:id="@+id/linear_progress_carb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:max="100"
@@ -196,12 +199,13 @@
                         android:padding="10dp">
 
                         <TextView
+                            android:id="@+id/tv_fiber"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Fiber: 25%" />
 
                         <com.google.android.material.progressindicator.LinearProgressIndicator
-                            android:id="@+id/linear_progress4"
+                            android:id="@+id/linear_progress_fiber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:max="100"

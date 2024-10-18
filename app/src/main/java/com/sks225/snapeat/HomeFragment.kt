@@ -1,14 +1,20 @@
 package com.sks225.snapeat
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.sks225.snapeat.adapter.SuggestedFoodAdapter
 import com.sks225.snapeat.databinding.FragmentHomeBinding
+import com.sks225.snapeat.utilities.carbFood
+import com.sks225.snapeat.utilities.fiberFood
+import com.sks225.snapeat.utilities.proteinFood
 import com.sks225.snapeat.utilities.setUpFullGauge
 import com.sks225.snapeat.viewModel.MainFragmentViewModel
 import java.util.Calendar
@@ -22,6 +28,10 @@ class HomeFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
     private var glassCountMax: Int = 6
     private var workoutTime: Int = 0
     private var workoutTimeMax: Int = 60
+
+    private var protein = 0.0
+    private var carbs = 0.0
+    private var fiber = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,6 +103,32 @@ class HomeFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
         getTodayStats()
     }
 
+    private fun loadSuggestion() {
+        var foodList = proteinFood
+        when (getSuggestion()) {
+            "Protein" -> foodList = proteinFood
+            "Fiber" -> foodList = fiberFood
+            "Carbs" -> foodList = carbFood
+        }
+
+        binding.tvFoodSuggestion.text =
+            "It seems you had less ${getSuggestion()} food\nHere are some ${getSuggestion()} rich foods..."
+
+        binding.rvFood.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val suggestedFoodAdapter = SuggestedFoodAdapter(foodList)
+        binding.rvFood.adapter = suggestedFoodAdapter
+    }
+
+    private fun getSuggestion(): String {
+        if (protein < carbs && protein < fiber)
+            return "Protein"
+        if (fiber < protein && fiber < carbs)
+            return "Fiber"
+        else
+            return "Carbs"
+    }
+
     private fun getGreeting(): String {
         val calendar = Calendar.getInstance()
         val timeOfDay = calendar.get(Calendar.HOUR_OF_DAY)
@@ -128,6 +164,7 @@ class HomeFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
 
     private fun getTodayStats() {
         viewModel.getMealsData { meals, healthData ->
+            Log.d("Test", healthData.toString())
             val caloriesRequired = ((healthData.weight * 10 + 6.25 * healthData.height - 5 * healthData.age + 5) * 1.46).toInt()
             val proteinRequired = healthData.weight * 0.9
             val carbsRequired = caloriesRequired / 8.0
@@ -149,17 +186,23 @@ class HomeFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
                 protein += meal.foodProtein
                 fiber += meal.foodFiber
             }
+
             binding.tvCal.text = "${calories.toInt()} of $caloriesRequired"
-            binding.tvCarb.text = (carbs * 100.0 / carbsRequired).toString() + " %"
-            binding.tvProtein.text = (protein * 100.0 / proteinRequired).toString() + " %"
-            binding.tvFat.text = (fat * 100.0 / fatRequired).toString() + " %"
-            binding.tvFiber.text = (fiber * 100.0 / fiberRequired).toString() + " %"
+            binding.tvCarb.text = "Carbs:" + (carbs * 100.0 / carbsRequired).roundToInt().toString() + " %"
+            binding.tvProtein.text = "Protein: " + (protein * 100.0 / proteinRequired).roundToInt().toString() + " %"
+            binding.tvFat.text = "Fat: " + (fat * 100.0 / fatRequired).roundToInt().toString() + " %"
+            binding.tvFiber.text = "Fiber: " + (fiber * 100.0 / fiberRequired).roundToInt().toString() + " %"
 
             binding.progressCircular.progress = (calories * 100 / caloriesRequired).roundToInt()
             binding.linearProgressCarb.progress = (carbs * 100 / carbsRequired).roundToInt()
             binding.linearProgressProtein.progress = (protein * 100 / proteinRequired).roundToInt()
             binding.linearProgressFat.progress = (fat * 100 / fatRequired).roundToInt()
             binding.linearProgressFiber.progress = (fat * 100 / fiberRequired).roundToInt()
+
+            this.protein = protein
+            this.carbs = carbs
+            this.fiber = fiber
+            loadSuggestion()
         }
     }
 }

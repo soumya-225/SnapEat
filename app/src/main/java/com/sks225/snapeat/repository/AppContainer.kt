@@ -23,4 +23,5 @@ class AppContainer {
     val foodNutritionRepository by lazy { FoodNutritionRepository(foodNutritionApi) }
     val foodRecognitionRepository by lazy { FoodRecognitionRepository(foodRecognitionApi) }
     val userRepository by lazy { UserRepository() }
+    val bmiRepository by lazy { BmiRepository() }
 }

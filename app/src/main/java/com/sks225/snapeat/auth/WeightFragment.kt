@@ -15,7 +15,7 @@ class WeightFragment : Fragment() {
     private lateinit var np1: NumberPicker
     private lateinit var np2: NumberPicker
     private var weight: Double = 0.0
-    private var weight1: Int = 0
+    private var weight1: Int = 40
     private var weight2: Int = 0
 
     override fun onCreateView(
@@ -51,6 +51,8 @@ class WeightFragment : Fragment() {
             weight2 = newVal
             weight = weight1 + 0.1 * weight2
         }
+
+        weight = weight1 + 0.1 * weight2
 
         return binding.root
     }

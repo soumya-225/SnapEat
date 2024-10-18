@@ -344,10 +344,11 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/tv_food_suggestion"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingStart="10dp"
-                                    android:text="It seems today you had less protein\nHere are some protein rich foods..."
+                                    android:text="It seems had less protein food\nHere are some protein rich foods..."
                                     android:textStyle="normal" />
 
                                 <androidx.recyclerview.widget.RecyclerView
@@ -355,7 +356,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:padding="10dp"
-                                    tools:itemCount="1"
+                                    android:orientation="horizontal"
                                     tools:listitem="@layout/rv_food_item" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
