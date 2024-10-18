@@ -12,6 +12,7 @@ import com.sks225.snapeat.databinding.FragmentHomeBinding
 import com.sks225.snapeat.utilities.setUpFullGauge
 import com.sks225.snapeat.viewModel.MainFragmentViewModel
 import java.util.Calendar
+import kotlin.math.roundToInt
 
 
 class HomeFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
@@ -149,7 +150,16 @@ class HomeFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
                 fiber += meal.foodFiber
             }
             binding.tvCal.text = "${calories.toInt()} of $caloriesRequired"
-            
+            binding.tvCarb.text = (carbs * 100.0 / carbsRequired).toString() + " %"
+            binding.tvProtein.text = (protein * 100.0 / proteinRequired).toString() + " %"
+            binding.tvFat.text = (fat * 100.0 / fatRequired).toString() + " %"
+            binding.tvFiber.text = (fiber * 100.0 / fiberRequired).toString() + " %"
+
+            binding.progressCircular.progress = (calories * 100 / caloriesRequired).roundToInt()
+            binding.linearProgressCarb.progress = (carbs * 100 / carbsRequired).roundToInt()
+            binding.linearProgressProtein.progress = (protein * 100 / proteinRequired).roundToInt()
+            binding.linearProgressFat.progress = (fat * 100 / fatRequired).roundToInt()
+            binding.linearProgressFiber.progress = (fat * 100 / fiberRequired).roundToInt()
         }
     }
 }
