@@ -16,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sks225.snapeat.databinding.FragmentPostSnapBinding
 import com.sks225.snapeat.model.MealTime
-import com.sks225.snapeat.network.PostSnapViewModel
+import com.sks225.snapeat.viewModel.PostSnapViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -37,12 +37,16 @@ class PostSnapFragment : Fragment() {
         binding = FragmentPostSnapBinding.inflate(layoutInflater, container, false)
         navController = findNavController()
 
+        imageUri = Uri.parse(navArgs<PostSnapFragmentArgs>().value.imageUri)
+        binding.snapImage.setImageURI(imageUri)
+        binding.tvTime.text = getTimeString(snapTime)
+
         binding.btnBack.setOnClickListener {
             navController.navigateUp()
         }
 
         binding.btnSave.setOnClickListener {
-            viewModel.saveMealInfo(timeMillis = snapTime)
+            viewModel.saveMealInfo(imageUri = imageUri.toString(), timeMillis = snapTime)
             navController.popBackStack(R.id.mainFragment, false)
         }
 
@@ -50,9 +54,6 @@ class PostSnapFragment : Fragment() {
             viewModel.setQuantity(text.toString().toDoubleOrNull())
         }
 
-        imageUri = Uri.parse(navArgs<PostSnapFragmentArgs>().value.imageUri)
-        binding.snapImage.setImageURI(imageUri)
-        binding.tvTime.text = getTimeString(snapTime)
 
         binding.spTime.adapter = ArrayAdapter(
             requireContext(),

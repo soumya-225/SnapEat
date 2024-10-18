@@ -1,4 +1,4 @@
-package com.sks225.snapeat.data
+package com.sks225.snapeat.repository
 
 import android.content.Context
 import android.net.Uri

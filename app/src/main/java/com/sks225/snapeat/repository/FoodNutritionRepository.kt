@@ -1,4 +1,4 @@
-package com.sks225.snapeat.data
+package com.sks225.snapeat.repository
 
 import com.sks225.snapeat.model.NutrientsRequestBody
 import com.sks225.snapeat.network.FoodNutritionApi
