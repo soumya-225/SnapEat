@@ -83,7 +83,6 @@ class HomeFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
         binding.tvTrackText.text = "How about tracking your ${getGreeting()} meal?"
 
 
-
         return binding.root
     }
 

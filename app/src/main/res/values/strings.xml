@@ -13,4 +13,27 @@
     <string name="contact_us">Contact Us</string>
     <string name="logout">Logout</string>
     <string name="made_with_by_pookiecoderz">Made with ❤ by PookieCoderz</string>
+
+    <string name="privacyPolicy">
+
+Effective date: October 17, 2024\n
+
+PookieCoderz operates the SnapEat mobile application (hereinafter referred to as the "Service").\n
+\n
+This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.\n
+\n
+We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy.\n
+\n
+Information Collection and Use\n
+\n
+We collect several different types of information for various purposes to provide and improve our Service to you.\n
+\n
+Types of Data Collected\n
+\n
+Personal Data: While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:\n
+        Email address\n
+        First name and last name\n
+        Profile Photo\n
+        Cookies and Usage Data\n
+    </string>
 </resources>

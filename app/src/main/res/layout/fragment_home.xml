@@ -88,7 +88,7 @@
                                         android:layout_height="match_parent"
                                         android:gravity="center"
                                         android:padding="8dp"
-                                        android:text="1000"
+                                        android:text="150"
                                         android:textColor="@color/black"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
@@ -164,8 +164,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="10dp"
-                                        android:max="6"
-                                        android:progress="4"
+                                        android:max="2000"
+                                        android:progress="200"
                                         app:indicatorSize="72dp"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
@@ -189,7 +189,7 @@
                                     android:paddingStart="10dp"
                                     android:paddingTop="10dp"
                                     android:paddingEnd="10dp"
-                                    android:text="100 of 2000"
+                                    android:text="200 of 2000"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     app:layout_constraintStart_toEndOf="@id/fl_progress"
@@ -227,9 +227,9 @@
                                             android:id="@+id/linear_progress1"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:max="6"
+                                            android:max="200"
                                             android:padding="10dp"
-                                            android:progress="2"
+                                            android:progress="20"
                                             app:trackCornerRadius="2dp"
                                             app:trackThickness="6dp" />
 
@@ -243,15 +243,15 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="Fats: 10%" />
+                                            android:text="Fats: 20%" />
 
                                         <com.google.android.material.progressindicator.LinearProgressIndicator
                                             android:id="@+id/linear_progress2"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:max="6"
+                                            android:max="100"
                                             android:padding="10dp"
-                                            android:progress="2"
+                                            android:progress="20"
                                             app:trackCornerRadius="2dp"
                                             app:trackThickness="6dp" />
 
@@ -265,15 +265,15 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="Carbs: 10%" />
+                                            android:text="Carbs: 40%" />
 
                                         <com.google.android.material.progressindicator.LinearProgressIndicator
                                             android:id="@+id/linear_progress3"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:max="6"
+                                            android:max="100"
                                             android:padding="10dp"
-                                            android:progress="2"
+                                            android:progress="40"
                                             app:trackCornerRadius="2dp"
                                             app:trackThickness="6dp" />
 
@@ -287,15 +287,15 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="Fiber: 10%" />
+                                            android:text="Fiber: 25%" />
 
                                         <com.google.android.material.progressindicator.LinearProgressIndicator
                                             android:id="@+id/linear_progress4"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:max="6"
+                                            android:max="100"
                                             android:padding="10dp"
-                                            android:progress="2"
+                                            android:progress="25"
                                             app:trackCornerRadius="2dp"
                                             app:trackThickness="6dp" />
                                     </LinearLayout>
@@ -347,6 +347,7 @@
                                     android:textStyle="normal" />
 
                                 <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rv_food"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:padding="10dp"
@@ -379,19 +380,36 @@
                                     android:background="@null"
                                     android:src="@drawable/baseline_remove_24"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/gauge_card3"
+                                    app:layout_constraintEnd_toStartOf="@+id/fl_card3"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
-                                <com.ekn.gruzer.gaugelibrary.FullGauge
-                                    android:id="@+id/gauge_card3"
-                                    android:layout_width="120dp"
-                                    android:layout_height="120dp"
-                                    android:layout_margin="5dp"
+                                <FrameLayout
+                                    android:id="@+id/fl_card3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     app:layout_constraintBottom_toTopOf="@id/tv_water"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <ImageView
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/water" />
+
+                                    <com.ekn.gruzer.gaugelibrary.FullGauge
+                                        android:id="@+id/gauge_card3"
+                                        android:layout_width="120dp"
+                                        android:layout_height="120dp"
+                                        android:layout_margin="5dp"
+                                        app:layout_constraintBottom_toTopOf="@id/tv_water"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </FrameLayout>
 
                                 <ImageButton
                                     android:id="@+id/btn_add1"
@@ -401,7 +419,7 @@
                                     android:src="@drawable/baseline_add_24"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toEndOf="@+id/gauge_card3"
+                                    app:layout_constraintStart_toEndOf="@+id/fl_card3"
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
@@ -413,7 +431,7 @@
                                     android:textAlignment="center"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/gauge_card3" />
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_card3" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.cardview.widget.CardView>
 
@@ -441,19 +459,36 @@
                                     android:background="@null"
                                     android:src="@drawable/baseline_remove_24"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/gauge_card4"
+                                    app:layout_constraintEnd_toStartOf="@+id/fl_card4"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
-                                <com.ekn.gruzer.gaugelibrary.FullGauge
-                                    android:id="@+id/gauge_card4"
-                                    android:layout_width="120dp"
-                                    android:layout_height="120dp"
-                                    android:layout_margin="5dp"
+                                <FrameLayout
+                                    android:id="@+id/fl_card4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     app:layout_constraintBottom_toTopOf="@id/tv_workout"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <ImageView
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/playing" />
+
+                                    <com.ekn.gruzer.gaugelibrary.FullGauge
+                                        android:id="@+id/gauge_card4"
+                                        android:layout_width="120dp"
+                                        android:layout_height="120dp"
+                                        android:layout_margin="5dp"
+                                        app:layout_constraintBottom_toTopOf="@id/tv_workout"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </FrameLayout>
 
                                 <ImageButton
                                     android:id="@+id/btn_add2"
@@ -463,7 +498,7 @@
                                     android:src="@drawable/baseline_add_24"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toEndOf="@+id/gauge_card4"
+                                    app:layout_constraintStart_toEndOf="@+id/fl_card4"
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
@@ -471,11 +506,11 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:padding="5dp"
-                                    android:text="Workout Time"
+                                    android:text="Outdoor Play Time"
                                     android:textAlignment="center"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/gauge_card4" />
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_card4" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.cardview.widget.CardView>
 
