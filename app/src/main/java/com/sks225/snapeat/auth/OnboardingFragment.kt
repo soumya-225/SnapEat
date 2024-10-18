@@ -33,9 +33,9 @@ class OnboardingFragment : Fragment() {
         }
 
         val images = arrayOf(
-            "https://res.cloudinary.com/deukzdr70/image/upload/v1729200890/lrn6kapgtmxxrpjktvq9.png",
-            "https://res.cloudinary.com/deukzdr70/image/upload/v1729200894/zfcrypy4sucliabnsuwi.png",
-            "https://res.cloudinary.com/deukzdr70/image/upload/v1729200898/rz9qfh8lvlrekr6gzck4.png",
+            "https://res.cloudinary.com/deukzdr70/image/upload/v1729215336/ipns1fwakfyneaji8h59.png",
+            "https://res.cloudinary.com/deukzdr70/image/upload/v1729215336/xvhc7sge7lc2s5yi7xve.png",
+            "https://res.cloudinary.com/deukzdr70/image/upload/v1729215337/cwwcf3eqoidrrhrcdk24.png",
         )
 
         binding.viewPagerCarousel.adapter = HomeCarouselAdapter(images)
