@@ -28,12 +28,11 @@ import java.util.concurrent.Executors
 class SnapFragment : Fragment() {
     private lateinit var binding: FragmentSnapBinding
     private var imageCapture: ImageCapture? = null
-
     private lateinit var cameraExecutor: ExecutorService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentSnapBinding.inflate(layoutInflater, container, false)
 
@@ -81,7 +80,11 @@ class SnapFragment : Fragment() {
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
-                    findNavController().navigate(R.id.action_snapFragment_to_postSnapFragment)
+
+                    val action = SnapFragmentDirections.actionSnapFragmentToPostSnapFragment(
+                        output.savedUri.toString()
+                    )
+                    findNavController().navigate(action)
                 }
             }
         )
@@ -100,10 +103,9 @@ class SnapFragment : Fragment() {
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
             try {
+                imageCapture = ImageCapture.Builder().build()
                 cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview
-                )
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
 
             } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
