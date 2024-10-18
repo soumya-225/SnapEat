@@ -29,13 +29,13 @@ class OnboardingFragment : Fragment() {
         binding = FragmentOnboardingBinding.inflate(inflater, container, false)
 
         binding.btnNext.setOnClickListener {
-            //findNavController().navigate(R.id.action_onboardingFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_onboardingFragment2_to_loginFragment)
         }
 
         val images = arrayOf(
-            "https://res.cloudinary.com/dnywj3xrl/image/upload/v1725973132/IMG-20240910-WA0054_p41az0.jpg",
-            "https://res.cloudinary.com/dnywj3xrl/image/upload/v1725973132/IMG-20240910-WA0053_bijxkg.jpg",
-            "https://res.cloudinary.com/dnywj3xrl/image/upload/v1725973121/IMG-20240910-WA0055_ue4b8r.jpg",
+            "https://res.cloudinary.com/deukzdr70/image/upload/v1729200890/lrn6kapgtmxxrpjktvq9.png",
+            "https://res.cloudinary.com/deukzdr70/image/upload/v1729200894/zfcrypy4sucliabnsuwi.png",
+            "https://res.cloudinary.com/deukzdr70/image/upload/v1729200898/rz9qfh8lvlrekr6gzck4.png",
         )
 
         binding.viewPagerCarousel.adapter = HomeCarouselAdapter(images)
