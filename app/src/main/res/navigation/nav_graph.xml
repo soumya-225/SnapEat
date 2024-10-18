@@ -23,6 +23,12 @@
         <action
             android:id="@+id/action_homeFragment_to_trackWaterFragment"
             app:destination="@id/trackWaterFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_onboardingFragment2"
+            app:destination="@id/onboardingFragment2" />
+        <action
+            android:id="@+id/action_mainFragment_to_calculateBmiFragment"
+            app:destination="@id/calculateBmiFragment" />
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment2"
@@ -43,13 +49,17 @@
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_ageFragment"
-            app:destination="@id/ageFragment" />
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.sks225.snapeat.auth.SignupFragment"
-        android:label="SignupFragment" />
+        android:label="SignupFragment" >
+        <action
+            android:id="@+id/action_signupFragment_to_ageFragment"
+            app:destination="@id/ageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/ageFragment"
         android:name="com.sks225.snapeat.auth.AgeFragment"
@@ -65,6 +75,9 @@
         <action
             android:id="@+id/action_weightFragment_to_heightFragment"
             app:destination="@id/heightFragment" />
+        <argument
+            android:name="age"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/heightFragment"
@@ -73,6 +86,12 @@
         <action
             android:id="@+id/action_heightFragment_to_homeFragment"
             app:destination="@id/mainFragment" />
+        <argument
+            android:name="weight"
+            app:argType="float" />
+        <argument
+            android:name="age"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/rewardFragment"
@@ -125,4 +144,29 @@
         android:id="@+id/trackWaterFragment"
         android:name="com.sks225.snapeat.TrackWaterFragment"
         android:label="TrackWaterFragment" />
+    <fragment
+        android:id="@+id/bmiResultFragment"
+        android:name="com.sks225.snapeat.BmiResultFragment"
+        android:label="BmiResultFragment" >
+        <argument
+            android:name="height"
+            app:argType="string" />
+        <argument
+            android:name="weight"
+            app:argType="string" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_bmiResultFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calculateBmiFragment"
+        android:name="com.sks225.snapeat.CalculateBmiFragment"
+        android:label="CalculateBmiFragment" >
+        <action
+            android:id="@+id/action_calculateBmiFragment_to_bmiResultFragment"
+            app:destination="@id/bmiResultFragment" />
+    </fragment>
 </navigation>

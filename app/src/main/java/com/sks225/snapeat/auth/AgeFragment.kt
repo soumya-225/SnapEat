@@ -1,6 +1,7 @@
 package com.sks225.snapeat.auth
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.sks225.snapeat.databinding.FragmentAgeBinding
 class AgeFragment : Fragment() {
 
     private lateinit var binding: FragmentAgeBinding
+    private var age: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,7 +23,16 @@ class AgeFragment : Fragment() {
         binding = FragmentAgeBinding.inflate(inflater, container, false)
 
         binding.btnNext.setOnClickListener {
-            findNavController().navigate(R.id.action_ageFragment_to_weightFragment)
+            val action = AgeFragmentDirections.actionAgeFragmentToWeightFragment(age)
+            findNavController().navigate(action)
+        }
+
+        binding.numberPicker.minValue = 5
+        binding.numberPicker.maxValue = 100
+        binding.numberPicker.value = 10
+
+        binding.numberPicker.setOnValueChangedListener { _, _, newVal ->
+            age = newVal
         }
 
         return binding.root

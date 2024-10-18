@@ -31,7 +31,7 @@ class SignUpViewModel : ViewModel() {
     private val storage = Firebase.storage
 
 
-    fun signUp(binding: FragmentSignupBinding, activity: Activity) {
+    fun signUp(binding: FragmentSignupBinding, activity: Activity, onSuccess: ()->Unit) {
         if (email.value.isNullOrBlank()) {
             binding.etEmail.error = "Please Provide Email"
             binding.prg.visibility = View.GONE
@@ -60,6 +60,7 @@ class SignUpViewModel : ViewModel() {
         } else {
             mAuth.createUserWithEmailAndPassword(email.value!!, pass.value!!).addOnSuccessListener {
                 saveProfileImage(mAuth.currentUser!!.uid, activity, binding)
+                onSuccess()
             }.addOnFailureListener {
                 binding.prg.visibility = View.GONE
                 Snackbar.make(binding.root, it.message.toString(), Snackbar.LENGTH_LONG).show()
@@ -94,10 +95,7 @@ class SignUpViewModel : ViewModel() {
         binding: FragmentSignupBinding
     ) {
         val user = User(name.value, email.value, uid, it.toString())
-        database.getReference("users").child(uid).setValue(user).addOnSuccessListener {
-            activity.startActivity(Intent(activity, MainActivity::class.java))
-            activity.finishAffinity()
-        }.addOnFailureListener {
+        database.getReference("users").child(uid).setValue(user).addOnFailureListener {
             binding.prg.visibility = View.GONE
             Snackbar.make(binding.root, it.message.toString(), Snackbar.LENGTH_LONG).show()
         }

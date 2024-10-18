@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="1 of 6 Glasses"
+            android:text="2 of 6 Glasses"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:max="6"
-            android:progress="4"
+            android:progress="2"
             app:layout_constraintTop_toBottomOf="@+id/tv_glass_count"
             app:trackCornerRadius="5dp"
             app:trackThickness="10dp" />
@@ -74,9 +74,23 @@
             android:layout_margin="10dp"
             android:background="@null"
             android:src="@drawable/baseline_remove_24"
-            app:layout_constraintBottom_toBottomOf="@+id/circularProgressIndicator"
-            app:layout_constraintEnd_toStartOf="@+id/circularProgressIndicator"
-            app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator" />
+            app:layout_constraintBottom_toBottomOf="@+id/fl_progress"
+            app:layout_constraintEnd_toStartOf="@+id/fl_progress"
+            app:layout_constraintTop_toTopOf="@+id/fl_progress" />
+
+        <FrameLayout
+            android:id="@+id/fl_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_progress"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/water"
+                android:layout_gravity="center"/>
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/circularProgressIndicator"
@@ -84,13 +98,15 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:max="6"
-            android:progress="4"
+            android:progress="2"
             app:indicatorSize="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linear_progress"
             app:trackCornerRadius="10dp"
             app:trackThickness="8dp" />
+
+        </FrameLayout>
 
         <ImageButton
             android:id="@+id/btn_inc"
@@ -99,9 +115,9 @@
             android:layout_margin="10dp"
             android:background="@null"
             android:src="@drawable/baseline_add_24"
-            app:layout_constraintBottom_toBottomOf="@+id/circularProgressIndicator"
-            app:layout_constraintStart_toEndOf="@+id/circularProgressIndicator"
-            app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator" />
+            app:layout_constraintBottom_toBottomOf="@+id/fl_progress"
+            app:layout_constraintStart_toEndOf="@+id/fl_progress"
+            app:layout_constraintTop_toTopOf="@+id/fl_progress" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

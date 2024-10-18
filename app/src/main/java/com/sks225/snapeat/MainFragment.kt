@@ -1,35 +1,57 @@
 package com.sks225.snapeat
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sks225.snapeat.adapter.AdapterViewPager
-import com.sks225.snapeat.databinding.ActivityMainBinding
 import com.sks225.snapeat.databinding.FragmentMainBinding
+import com.sks225.snapeat.repository.BmiRepository
+import com.sks225.snapeat.repository.UserRepository
+import com.sks225.snapeat.viewModel.MainFragmentViewModel
+import com.sks225.snapeat.viewModelFactory.MainFragmentViewModelFactory
 
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var pagerMain: ViewPager2
+    private lateinit var viewModel: MainFragmentViewModel
     private var fragmentArrList: ArrayList<Fragment> = ArrayList()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val bmiRepository = BmiRepository()
+        val userRepository = UserRepository()
+        val factory = MainFragmentViewModelFactory(userRepository, bmiRepository)
+        viewModel = ViewModelProvider(this, factory)[MainFragmentViewModel::class.java]
+
+        if (Firebase.auth.currentUser == null) {
+            findNavController().navigate(R.id.action_mainFragment_to_onboardingFragment2)
+            return
+        }
+    }
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainBinding.inflate(layoutInflater,container,false)
+        binding = FragmentMainBinding.inflate(layoutInflater, container, false)
         bottomNav = binding.bottomNavigationView
         pagerMain = binding.pagerMain
 
-        fragmentArrList.add(HomeFragment())
-        fragmentArrList.add(ReportFragment())
-        fragmentArrList.add(ProfileFragment())
+        fragmentArrList.add(HomeFragment(viewModel))
+        fragmentArrList.add(ReportFragment(viewModel))
+        fragmentArrList.add(ProfileFragment(viewModel))
 
         val adapterViewPager = AdapterViewPager(requireActivity(), fragmentArrList)
         pagerMain.adapter = adapterViewPager

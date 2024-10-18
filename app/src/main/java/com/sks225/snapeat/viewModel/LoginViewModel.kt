@@ -20,7 +20,7 @@ class LoginViewModel : ViewModel() {
     val email: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val pass: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
-    fun login(binding: FragmentLoginBinding, activity: Activity) {
+    fun login(binding: FragmentLoginBinding, activity: Activity, onSuccess: () -> Unit) {
         if (email.value.isNullOrBlank()) {
             binding.emailInput.error = "Please provide email"
             binding.progressBar.visibility = View.GONE
@@ -39,6 +39,7 @@ class LoginViewModel : ViewModel() {
             return
         } else {
             auth.signInWithEmailAndPassword(email.value!!, pass.value!!).addOnSuccessListener {
+                onSuccess()
                 //activity.startActivity(Intent(activity, MainActivity::class.java))
                 //go to main activity
             }.addOnFailureListener {
