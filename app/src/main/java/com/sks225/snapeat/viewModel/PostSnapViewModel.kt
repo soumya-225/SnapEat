@@ -37,7 +37,7 @@ class PostSnapViewModel(
                         _uiState.value.copy(foodName = "Not Detected", nutritionData = null)
                     return@launch
                 }
-                getFoodData("apple".replace("_", " "), context)
+                getFoodData(foodName.replace("_", " "), context)
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(context, "Internet not connected", Toast.LENGTH_SHORT).show()

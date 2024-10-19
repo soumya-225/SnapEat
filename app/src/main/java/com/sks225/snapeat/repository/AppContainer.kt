@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class AppContainer {
     private val nutritionBaseUrl = "https://www.nutritionix.com"
-    private val recognitionApiBaseUrl = "http://172.22.107.15:5000"
+    private val recognitionApiBaseUrl = "http://192.168.51.26:5000"
 
     private val nutritionRetrofit = Retrofit.Builder()
         .baseUrl(nutritionBaseUrl)
@@ -23,4 +23,5 @@ class AppContainer {
     val foodNutritionRepository by lazy { FoodNutritionRepository(foodNutritionApi) }
     val foodRecognitionRepository by lazy { FoodRecognitionRepository(foodRecognitionApi) }
     val userRepository by lazy { UserRepository() }
+    val bmiRepository by lazy { BmiRepository() }
 }
