@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sks225.snapeat.model.BmiRecord
+import com.sks225.snapeat.model.HealthData
+import com.sks225.snapeat.model.MealInfo
 import com.sks225.snapeat.repository.BmiRepository
 import com.sks225.snapeat.repository.UserRepository
 import com.sks225.snapeat.model.User
@@ -34,6 +36,16 @@ class MainFragmentViewModel(
                     userRepository.getUserData()
                 }
                 _user.value = userResult
+            } catch (e: Exception) {
+                Log.e("MainActivityViewModel", "Error fetching user data", e)
+            }
+        }
+    }
+
+    fun getMealsData(callback: (List<MealInfo>, HealthData) -> Unit) {
+        viewModelScope.launch {
+            try {
+                callback(userRepository.getMealsData(), bmiRepository.getHealthData()!!)
             } catch (e: Exception) {
                 Log.e("MainActivityViewModel", "Error fetching user data", e)
             }

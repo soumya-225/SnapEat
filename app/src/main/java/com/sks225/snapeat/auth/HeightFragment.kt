@@ -1,6 +1,7 @@
 package com.sks225.snapeat.auth
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ import com.sks225.snapeat.viewModel.HeightFragmentViewModel
 class HeightFragment : Fragment() {
     private lateinit var binding: FragmentHeightBinding
     private var height: Int = 0
-    private var height1: Int = 0
+    private var height1: Int = 5
     private var height2: Int = 0
     private lateinit var healthData: HealthData
     private lateinit var viewModel: HeightFragmentViewModel
@@ -32,6 +33,7 @@ class HeightFragment : Fragment() {
         val age = navArgs<HeightFragmentArgs>().value.age
 
         binding.btnContinue.setOnClickListener{
+            Log.d("Test", "$healthData Origin")
             viewModel.saveHealthData(healthData)
             findNavController().navigate(R.id.action_heightFragment_to_homeFragment)
         }
@@ -47,15 +49,16 @@ class HeightFragment : Fragment() {
         binding.numberPicker1.setOnValueChangedListener { _, _, newVal ->
             height1 = newVal
             height = ((height1 * 12 + height2) * 2.54).toInt()
+            healthData = HealthData(weight, height,age)
         }
 
         binding.numberPicker2.setOnValueChangedListener { _, _, newVal ->
             height2 = newVal
             height = ((height1 * 12 + height2) * 2.54).toInt()
+            healthData = HealthData(weight, height,age)
         }
 
-
-
+        height = ((height1 * 12 + height2) * 2.54).toInt()
         healthData = HealthData(weight, height,age)
 
         return binding.root

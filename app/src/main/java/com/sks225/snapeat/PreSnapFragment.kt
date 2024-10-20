@@ -2,6 +2,7 @@ package com.sks225.snapeat
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -14,9 +15,14 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import com.sks225.snapeat.adapter.SnappedFoodGridAdapter
 import com.sks225.snapeat.databinding.FragmentPreSnapBinding
+import com.sks225.snapeat.repository.UserRepository
+import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -43,6 +49,7 @@ class PreSnapFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentPreSnapBinding.inflate(layoutInflater, container, false)
+        binding.rvPrevSnap.layoutManager = GridLayoutManager(requireContext(), 3)
         navController = findNavController()
 
         binding.btnBack.setOnClickListener {
@@ -59,6 +66,14 @@ class PreSnapFragment : Fragment() {
             requestPermissions()
 
         cameraExecutor = Executors.newSingleThreadExecutor()
+
+        lifecycleScope.launch {
+            val userRepository = UserRepository()
+            val items = userRepository.getMealsData().map {
+                SnappedFoodGridAdapter.Model(Uri.parse(it.imageUri), it.foodName)
+            }
+            binding.rvPrevSnap.adapter = SnappedFoodGridAdapter(requireContext(), items)
+        }
 
         return binding.root
     }

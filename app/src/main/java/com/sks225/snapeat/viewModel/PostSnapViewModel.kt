@@ -1,4 +1,4 @@
-package com.sks225.snapeat.network
+package com.sks225.snapeat.viewModel
 
 import android.content.Context
 import android.net.Uri
@@ -10,11 +10,12 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.sks225.snapeat.SnapEatApplication
-import com.sks225.snapeat.data.FoodNutritionRepository
-import com.sks225.snapeat.data.FoodRecognitionRepository
+import com.sks225.snapeat.repository.FoodNutritionRepository
+import com.sks225.snapeat.repository.FoodRecognitionRepository
 import com.sks225.snapeat.model.MealInfo
 import com.sks225.snapeat.model.MealTime
 import com.sks225.snapeat.model.PostSnapModel
+import com.sks225.snapeat.repository.UserRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -22,6 +23,7 @@ import kotlinx.coroutines.launch
 class PostSnapViewModel(
     private val foodRecognitionRepository: FoodRecognitionRepository,
     private val foodNutritionRepository: FoodNutritionRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(PostSnapModel())
     val uiState = _uiState.asStateFlow()
@@ -35,7 +37,7 @@ class PostSnapViewModel(
                         _uiState.value.copy(foodName = "Not Detected", nutritionData = null)
                     return@launch
                 }
-                getFoodData("apple".replace("_", " "), context)
+                getFoodData(foodName.replace("_", " "), context)
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(context, "Internet not connected", Toast.LENGTH_SHORT).show()
@@ -77,11 +79,12 @@ class PostSnapViewModel(
         _uiState.value = _uiState.value.copy(quantity = quantity)
     }
 
-    private fun getMealInfo(timeMillis: Long) = run {
+    private fun getMealInfo(imageUri: String, timeMillis: Long) = run {
         val state = uiState.value
         val factor =
             state.measures[state.measure].serving_weight / state.nutritionData!!.serving_weight_grams
         MealInfo(
+            imageUri = imageUri,
             timeMillis = timeMillis,
             mealTime = state.mealTime,
             foodName = state.foodName,
@@ -100,8 +103,11 @@ class PostSnapViewModel(
         _uiState.value = _uiState.value.copy(mealTime = mealTime)
     }
 
-    fun saveMealInfo(timeMillis: Long) {
-        val mealInfo = getMealInfo(timeMillis)
+    fun saveMealInfo(imageUri: String, timeMillis: Long) {
+        val mealInfo = getMealInfo(imageUri, timeMillis)
+        viewModelScope.launch {
+            userRepository.saveMealData(mealInfo)
+        }
     }
 
     companion object {
@@ -110,9 +116,11 @@ class PostSnapViewModel(
                 val application = (this[APPLICATION_KEY] as SnapEatApplication)
                 val foodRecognitionRepository = application.container.foodRecognitionRepository
                 val foodNutritionRepository = application.container.foodNutritionRepository
+                val userRepository = application.container.userRepository
                 PostSnapViewModel(
                     foodRecognitionRepository = foodRecognitionRepository,
-                    foodNutritionRepository = foodNutritionRepository
+                    foodNutritionRepository = foodNutritionRepository,
+                    userRepository = userRepository
                 )
             }
         }
