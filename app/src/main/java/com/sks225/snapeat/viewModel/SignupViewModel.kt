@@ -1,7 +1,6 @@
 package com.sks225.snapeat.viewModel
 
 import android.app.Activity
-import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.webkit.MimeTypeMap
@@ -12,7 +11,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.sks225.snapeat.MainActivity
 import com.sks225.snapeat.databinding.FragmentSignupBinding
 import com.sks225.snapeat.model.User
 
@@ -31,35 +29,37 @@ class SignUpViewModel : ViewModel() {
     private val storage = Firebase.storage
 
 
-    fun signUp(binding: FragmentSignupBinding, activity: Activity, onSuccess: ()->Unit) {
+    fun signUp(binding: FragmentSignupBinding, onSuccess: () -> Unit) {
         if (email.value.isNullOrBlank()) {
             binding.etEmail.error = "Please Provide Email"
             binding.prg.visibility = View.GONE
             return
         } else if (pass.value.isNullOrBlank()) {
-            binding.etPass.error = "Please provide password"
+            binding.etPassword.error = "Please provide password"
             binding.prg.visibility = View.GONE
             return
         } else if (name.value.isNullOrBlank()) {
-            binding.etName.error = "Please provide Name"
+            binding.etFullName.error = "Please provide Name"
             binding.prg.visibility = View.GONE
             return
-        } else if (uriAvail.value == false) {
-            binding.prg.visibility = View.GONE
-            Snackbar.make(binding.root, "No profile image selected", Snackbar.LENGTH_LONG).show()
-            return
+
+//        } else if (uriAvail.value == false) {
+//            binding.prg.visibility = View.GONE
+//            Snackbar.make(binding.root, "No profile image selected", Snackbar.LENGTH_LONG).show()
+//            return
         } else if (!email.value!!.matches(emailPattern.toRegex())) {
             binding.etEmail.error = "Enter correct E-mail"
             return
         } else if (pass.value!!.length < 6) {
-            binding.etPass.error = "Password too short!"
+            binding.etPassword.error = "Password too short!"
             return
         } else if (!pass.value.equals(confirmPass.value)) {
-            binding.etConfirmPass.error = "Both passwords do not match"
+            binding.etPassword2.error = "Both passwords do not match"
             return
         } else {
             mAuth.createUserWithEmailAndPassword(email.value!!, pass.value!!).addOnSuccessListener {
-                saveProfileImage(mAuth.currentUser!!.uid, activity, binding)
+//                saveProfileImage(mAuth.currentUser!!.uid, activity, binding)
+                saveData(mAuth.currentUser!!.uid, binding)
                 onSuccess()
             }.addOnFailureListener {
                 binding.prg.visibility = View.GONE
@@ -69,32 +69,30 @@ class SignUpViewModel : ViewModel() {
 
     }
 
-    private fun saveProfileImage(
-        uid: String,
-        activity: Activity,
-        binding: FragmentSignupBinding
-    ) {
-        val ref = storage.getReference("photos/${uid}.${getFileExtension(uri.value!!, activity)}")
-        ref.putFile(uri.value!!).addOnSuccessListener {
-            ref.downloadUrl.addOnSuccessListener {
-                saveData(uid, activity, it, binding)
-            }.addOnFailureListener {
-                binding.prg.visibility = View.GONE
-                Snackbar.make(binding.root, it.message.toString(), Snackbar.LENGTH_LONG).show()
-            }
-        }.addOnFailureListener {
-            binding.prg.visibility = View.GONE
-            Snackbar.make(binding.root, it.message.toString(), Snackbar.LENGTH_LONG).show()
-        }
-    }
+//    private fun saveProfileImage(
+//        uid: String,
+//        activity: Activity,
+//        binding: FragmentSignupBinding
+//    ) {
+//        val ref = storage.getReference("photos/${uid}.${getFileExtension(uri.value!!, activity)}")
+//        ref.putFile(uri.value!!).addOnSuccessListener {
+//            ref.downloadUrl.addOnSuccessListener {
+//                saveData(uid, activity, it, binding)
+//            }.addOnFailureListener {
+//                binding.prg.visibility = View.GONE
+//                Snackbar.make(binding.root, it.message.toString(), Snackbar.LENGTH_LONG).show()
+//            }
+//        }.addOnFailureListener {
+//            binding.prg.visibility = View.GONE
+//            Snackbar.make(binding.root, it.message.toString(), Snackbar.LENGTH_LONG).show()
+//        }
+//    }
 
     private fun saveData(
         uid: String,
-        activity: Activity,
-        it: Uri?,
         binding: FragmentSignupBinding
     ) {
-        val user = User(name.value, email.value, uid, it.toString())
+        val user = User(name.value, email.value, uid)
         database.getReference("users").child(uid).setValue(user).addOnFailureListener {
             binding.prg.visibility = View.GONE
             Snackbar.make(binding.root, it.message.toString(), Snackbar.LENGTH_LONG).show()

@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
+        android:fontFamily="@font/nunito_bold"
         android:gravity="center"
         android:text="Select Your Height"
         android:textSize="32sp"
@@ -73,6 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:fontFamily="@font/nunito_regular"
             android:text="Feet"
             android:textSize="26sp" />
 
@@ -81,6 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
+            android:fontFamily="@font/nunito_regular"
             android:text="Inches"
             android:textSize="26sp" />
     </LinearLayout>
@@ -89,9 +92,11 @@
         android:id="@+id/btn_continue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CONTINUE"
-        android:layout_marginTop="80dp"
         android:layout_gravity="bottom"
+        android:layout_marginTop="80dp"
+        android:background="@color/pink"
+        android:text="CONTINUE"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        android:textStyle="normal"/>
+        android:textStyle="normal" />
 </LinearLayout>

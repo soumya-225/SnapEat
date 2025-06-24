@@ -2,19 +2,21 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
+//    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.24"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
+
     id("com.google.gms.google-services")
     id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
     namespace = "com.sks225.snapeat"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.sks225.snapeat"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 

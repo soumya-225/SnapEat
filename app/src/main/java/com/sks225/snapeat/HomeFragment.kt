@@ -47,9 +47,9 @@ class HomeFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
             }
         }
 
-        binding.llReward.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_rewardFragment)
-        }
+//        binding.llReward.setOnClickListener {
+//            navController.navigate(R.id.action_homeFragment_to_rewardFragment)
+//        }
 
 //        binding.ivUser.setOnClickListener {
 //            navController.navigate(R.id.action_homeFragment_to_profileFragment)
@@ -92,6 +92,7 @@ class HomeFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
         }
 
         binding.tvTrackText.text = "How about tracking your ${getGreeting()} meal?"
+        binding.tvHi.text="Good ${getGreeting()}, "
 
         getTodayStats()
 

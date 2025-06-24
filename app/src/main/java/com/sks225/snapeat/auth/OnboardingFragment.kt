@@ -33,20 +33,21 @@ class OnboardingFragment : Fragment() {
         }
 
         val images = arrayOf(
-            "https://res.cloudinary.com/deukzdr70/image/upload/v1729215336/ipns1fwakfyneaji8h59.png",
+            "https://res.cloudinary.com/deukzdr70/image/upload/v1750709900/ChatGPT_Image_Jun_24_2025_01_47_10_AM_vmbgcf.png",
+            //"https://res.cloudinary.com/deukzdr70/image/upload/v1729215336/ipns1fwakfyneaji8h59.png",
             "https://res.cloudinary.com/deukzdr70/image/upload/v1729215336/xvhc7sge7lc2s5yi7xve.png",
             "https://res.cloudinary.com/deukzdr70/image/upload/v1729215337/cwwcf3eqoidrrhrcdk24.png",
         )
 
         binding.viewPagerCarousel.adapter = HomeCarouselAdapter(images)
 
-        val compositePageTransformer = CompositePageTransformer()
-        compositePageTransformer.addTransformer(MarginPageTransformer((40 * Resources.getSystem().displayMetrics.density).toInt()))
-        compositePageTransformer.addTransformer { page, position ->
-            val r = 1 - abs(position)
-            page.scaleY = (0.80f + r * 0.20f)
-        }
-        binding.viewPagerCarousel.setPageTransformer(compositePageTransformer)
+//        val compositePageTransformer = CompositePageTransformer()
+//        compositePageTransformer.addTransformer(MarginPageTransformer((40 * Resources.getSystem().displayMetrics.density).toInt()))
+//        compositePageTransformer.addTransformer { page, position ->
+//            val r = 1 - abs(position)
+//            page.scaleY = (0.80f + r * 0.20f)
+//        }
+//        binding.viewPagerCarousel.setPageTransformer(compositePageTransformer)
 
         addDotsIndicator(images.size)
         binding.viewPagerCarousel.registerOnPageChangeCallback(object :

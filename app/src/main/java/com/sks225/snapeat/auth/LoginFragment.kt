@@ -37,8 +37,8 @@ class LoginFragment : Fragment() {
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
 
-        binding.emailInput.doAfterTextChanged { viewModel.email.value = it.toString() }
-        binding.passwordInput.doAfterTextChanged { viewModel.pass.value = it.toString() }
+        binding.etEmail.doAfterTextChanged { viewModel.email.value = it.toString() }
+        binding.etPassword.doAfterTextChanged { viewModel.pass.value = it.toString() }
 
         binding.btnLogin.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
@@ -46,7 +46,8 @@ class LoginFragment : Fragment() {
                 navController.navigate(R.id.action_loginFragment_to_mainFragment)
             }
         }
-        binding.redirectSignup.setOnClickListener {
+
+        binding.btnSignup.setOnClickListener {
             navController.navigate(R.id.action_loginFragment_to_signupFragment)
         }
 

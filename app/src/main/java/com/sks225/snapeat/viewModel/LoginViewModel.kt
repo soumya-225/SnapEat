@@ -22,19 +22,19 @@ class LoginViewModel : ViewModel() {
 
     fun login(binding: FragmentLoginBinding, activity: Activity, onSuccess: () -> Unit) {
         if (email.value.isNullOrBlank()) {
-            binding.emailInput.error = "Please provide email"
+            binding.etEmail.error = "Please provide email"
             binding.progressBar.visibility = View.GONE
             return
         } else if (pass.value.isNullOrBlank()) {
-            binding.passwordInput.error = "Please provide password"
+            binding.etPassword.error = "Please provide password"
             binding.progressBar.visibility = View.GONE
             return
         } else if (!email.value!!.matches(emailPattern.toRegex())) {
-            binding.emailInput.error = "Enter correct E-mail"
+            binding.etEmail.error = "Enter correct E-mail"
             binding.progressBar.visibility = View.GONE
             return
         } else if (pass.value!!.length < 6) {
-            binding.passwordInput.error = "Password too short!"
+            binding.etPassword.error = "Password too short!"
             binding.progressBar.visibility = View.GONE
             return
         } else {

@@ -9,6 +9,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -30,6 +31,7 @@
                 android:id="@+id/tv_track_water"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/nunito_bold"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Snap and Track"
@@ -41,12 +43,13 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <android.widget.SearchView
+        android:background="@color/white"
         android:id="@+id/search_view1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:queryBackground="@color/white"
         android:iconifiedByDefault="false"
-        android:queryBackground="@android:color/white"
         android:queryHint="Search Food..."
         android:searchHintIcon="@drawable/baseline_search_24" />
 
@@ -55,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="10dp"
+        android:fontFamily="@font/nunito_bold"
         android:text="OR"
         android:textSize="20sp" />
 
@@ -77,8 +81,8 @@
             android:background="#99000000" />
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
             android:src="@drawable/baseline_photo_camera_24" />
 
@@ -87,6 +91,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
             android:layout_marginBottom="72dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/nunito_regular"
             android:text="Click a Snap and Track"
             android:textColor="#FFFFFF" />
     </FrameLayout>
@@ -95,8 +101,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:fontFamily="@font/nunito_bold"
         android:text="Your Snapped Foods"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -12,6 +12,7 @@
 
     <FrameLayout
         android:id="@+id/fl_home"
+        android:background="#15FB629A"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -28,7 +29,6 @@
                 <com.google.android.material.appbar.AppBarLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
                     <androidx.appcompat.widget.Toolbar
@@ -46,11 +46,11 @@
                                 android:id="@+id/tv_hi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
+                                android:fontFamily="@font/nunito_bold"
                                 android:gravity="center"
-                                android:text="Hi, "
+                                android:text="Good Morning, "
                                 android:textColor="@color/black"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
+                                android:textSize="28sp"
                                 app:layout_constraintStart_toStartOf="parent" />
 
                             <TextView
@@ -60,45 +60,45 @@
                                 android:gravity="center"
                                 android:text="@{user.name}"
                                 android:textColor="@color/black"
-                                android:textSize="20sp"
+                                android:textSize="24sp"
                                 android:textStyle="bold"
                                 app:layout_constraintStart_toEndOf="@id/tv_hi" />
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginEnd="20dp"
-                                android:layout_marginBottom="5dp"
-                                android:backgroundTint="#FFFFFF"
-                                android:padding="10dp"
-                                app:cardCornerRadius="10dp"
-                                app:layout_constraintEnd_toStartOf="@id/iv_user">
+                            <!--                            <androidx.cardview.widget.CardView-->
+                            <!--                                android:layout_width="wrap_content"-->
+                            <!--                                android:layout_height="match_parent"-->
+                            <!--                                android:layout_marginTop="5dp"-->
+                            <!--                                android:layout_marginEnd="20dp"-->
+                            <!--                                android:layout_marginBottom="5dp"-->
+                            <!--                                android:backgroundTint="#FFFFFF"-->
+                            <!--                                android:padding="10dp"-->
+                            <!--                                app:cardCornerRadius="10dp"-->
+                            <!--                                app:layout_constraintEnd_toStartOf="@id/iv_user">-->
 
-                                <LinearLayout
-                                    android:id="@+id/ll_reward"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:clickable="true"
-                                    android:focusable="true"
-                                    android:padding="10dp">
+                            <!--                                <LinearLayout-->
+                            <!--                                    android:id="@+id/ll_reward"-->
+                            <!--                                    android:layout_width="match_parent"-->
+                            <!--                                    android:layout_height="match_parent"-->
+                            <!--                                    android:clickable="true"-->
+                            <!--                                    android:focusable="true"-->
+                            <!--                                    android:padding="10dp">-->
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:padding="8dp"
-                                        android:text="150"
-                                        android:textColor="@color/black"
-                                        android:textSize="16sp"
-                                        android:textStyle="bold" />
+                            <!--                                    <TextView-->
+                            <!--                                        android:layout_width="wrap_content"-->
+                            <!--                                        android:layout_height="match_parent"-->
+                            <!--                                        android:gravity="center"-->
+                            <!--                                        android:padding="8dp"-->
+                            <!--                                        android:text="150"-->
+                            <!--                                        android:textColor="@color/black"-->
+                            <!--                                        android:textSize="16sp"-->
+                            <!--                                        android:textStyle="bold" />-->
 
-                                    <ImageView
-                                        android:layout_width="40dp"
-                                        android:layout_height="match_parent"
-                                        android:src="@drawable/heart_coin_icon_2" />
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
+                            <!--                                    <ImageView-->
+                            <!--                                        android:layout_width="40dp"-->
+                            <!--                                        android:layout_height="match_parent"-->
+                            <!--                                        android:src="@drawable/heart_coin_icon_2" />-->
+                            <!--                                </LinearLayout>-->
+                            <!--                            </androidx.cardview.widget.CardView>-->
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/iv_user"
@@ -128,10 +128,10 @@
                             android:id="@+id/tv_track_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="16dp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:padding="20sp"
                             android:text="How about tracking your afternoon meal?"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
+                            android:textSize="20sp"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.cardview.widget.CardView
@@ -166,9 +166,11 @@
                                         android:layout_margin="10dp"
                                         android:max="2000"
                                         android:progress="200"
+                                        app:indicatorColor="@color/pink"
                                         app:indicatorSize="72dp"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
+                                        app:trackColor="#15E91E63"
                                         app:trackCornerRadius="10dp"
                                         app:trackThickness="6dp" />
 
@@ -186,11 +188,12 @@
                                     android:id="@+id/tv_cal"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nunito_bold"
                                     android:paddingStart="10dp"
                                     android:paddingTop="10dp"
                                     android:paddingEnd="10dp"
                                     android:text="200 of 2000"
-                                    android:textSize="20sp"
+                                    android:textSize="24sp"
                                     android:textStyle="bold"
                                     app:layout_constraintStart_toEndOf="@id/fl_progress"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -198,10 +201,11 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nunito_regular"
                                     android:paddingStart="10dp"
                                     android:paddingEnd="10dp"
                                     android:text="Cal eaten"
-                                    android:textSize="16sp"
+                                    android:textSize="20sp"
                                     app:layout_constraintStart_toEndOf="@id/fl_progress"
                                     app:layout_constraintTop_toBottomOf="@id/tv_cal" />
 
@@ -211,6 +215,8 @@
                                     android:layout_marginTop="10dp"
                                     android:columnCount="2"
                                     android:rowCount="2"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@id/fl_progress">
 
                                     <LinearLayout
@@ -222,7 +228,9 @@
                                             android:id="@+id/tv_protein"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="Proteins: 10%" />
+                                            android:fontFamily="@font/nunito_semibold"
+                                            android:text="Proteins: 10%"
+                                            android:textSize="16sp" />
 
                                         <com.google.android.material.progressindicator.LinearProgressIndicator
                                             android:id="@+id/linear_progress_protein"
@@ -231,6 +239,8 @@
                                             android:max="200"
                                             android:padding="10dp"
                                             android:progress="20"
+                                            app:indicatorColor="@color/pink"
+                                            app:trackColor="#15E91E63"
                                             app:trackCornerRadius="2dp"
                                             app:trackThickness="6dp" />
 
@@ -244,8 +254,11 @@
                                         <TextView
                                             android:id="@+id/tv_fat"
                                             android:layout_width="wrap_content"
+
                                             android:layout_height="wrap_content"
-                                            android:text="Fats: 20%" />
+                                            android:fontFamily="@font/nunito_semibold"
+                                            android:text="Fats: 20%"
+                                            android:textSize="16sp" />
 
                                         <com.google.android.material.progressindicator.LinearProgressIndicator
                                             android:id="@+id/linear_progress_fat"
@@ -254,6 +267,8 @@
                                             android:max="100"
                                             android:padding="10dp"
                                             android:progress="20"
+                                            app:indicatorColor="@color/pink"
+                                            app:trackColor="#15E91E63"
                                             app:trackCornerRadius="2dp"
                                             app:trackThickness="6dp" />
 
@@ -266,9 +281,12 @@
 
                                         <TextView
                                             android:id="@+id/tv_carb"
+
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="Carbs: 40%" />
+                                            android:fontFamily="@font/nunito_semibold"
+                                            android:text="Carbs: 40%"
+                                            android:textSize="16sp" />
 
                                         <com.google.android.material.progressindicator.LinearProgressIndicator
                                             android:id="@+id/linear_progress_carb"
@@ -277,6 +295,8 @@
                                             android:max="100"
                                             android:padding="10dp"
                                             android:progress="40"
+                                            app:indicatorColor="@color/pink"
+                                            app:trackColor="#15E91E63"
                                             app:trackCornerRadius="2dp"
                                             app:trackThickness="6dp" />
 
@@ -289,9 +309,12 @@
 
                                         <TextView
                                             android:id="@+id/tv_fiber"
+
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="Fiber: 25%" />
+                                            android:fontFamily="@font/nunito_semibold"
+                                            android:text="Fiber: 25%"
+                                            android:textSize="16sp" />
 
                                         <com.google.android.material.progressindicator.LinearProgressIndicator
                                             android:id="@+id/linear_progress_fiber"
@@ -300,6 +323,8 @@
                                             android:max="100"
                                             android:padding="10dp"
                                             android:progress="25"
+                                            app:indicatorColor="@color/pink"
+                                            app:trackColor="#15E91E63"
                                             app:trackCornerRadius="2dp"
                                             app:trackThickness="6dp" />
                                     </LinearLayout>
@@ -338,25 +363,28 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nunito_bold"
                                     android:padding="10dp"
                                     android:text="Food Suggestions"
-                                    android:textSize="16sp"
+                                    android:textSize="20sp"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/tv_food_suggestion"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nunito_regular"
                                     android:paddingStart="10dp"
                                     android:text="It seems had less protein food\nHere are some protein rich foods..."
+                                    android:textSize="16sp"
                                     android:textStyle="normal" />
 
                                 <androidx.recyclerview.widget.RecyclerView
                                     android:id="@+id/rv_food"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="10dp"
                                     android:orientation="horizontal"
+                                    android:padding="10dp"
                                     tools:listitem="@layout/rv_food_item" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -431,6 +459,7 @@
                                     android:id="@+id/tv_water"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nunito_regular"
                                     android:padding="5dp"
                                     android:text="Drink 6 glasses of water!!"
                                     android:textAlignment="center"
@@ -510,8 +539,9 @@
                                     android:id="@+id/tv_workout"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nunito_regular"
                                     android:padding="5dp"
-                                    android:text="Outdoor Play Time"
+                                    android:text="Workout Time"
                                     android:textAlignment="center"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -530,6 +560,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
+            android:textColor="@color/white"
+            android:backgroundTint="#90FF006B"
             android:drawableLeft="@drawable/baseline_camera_24"
             android:text="Snap" />
     </FrameLayout>

@@ -20,6 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_bold"
             android:text="BMI Result"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -54,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/nunito_bold"
             android:text="22.5"
             android:textSize="40sp"
             android:textStyle="bold">
@@ -67,6 +69,7 @@
             android:layout_below="@id/tv_bmi"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/nunito_semibold"
             android:text="Male"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -78,10 +81,10 @@
             android:layout_below="@id/tv_gender"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/raleway"
+            android:fontFamily="@font/nunito_regular"
             android:text="You are Normal"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/tv_weight_range"
@@ -90,6 +93,7 @@
             android:layout_below="@id/tv_bmi_category"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/nunito_light"
             android:text="Weight Range"
             android:textSize="16sp"
             android:textStyle="normal" />
@@ -99,8 +103,8 @@
         android:id="@+id/btn_recalculate_bmi"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="#F44336"
-        android:fontFamily="@font/raleway"
+        android:background="@color/pink"
+        android:fontFamily="@font/nunito_bold"
         android:text="RECALCULATE YOUR BMI"
         android:textColor="@color/white"
         android:textSize="18sp"

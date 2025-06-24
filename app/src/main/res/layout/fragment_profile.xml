@@ -29,6 +29,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/nunito_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -61,6 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/nunito_bold"
                 android:padding="10dp"
                 android:text="@{user.name}"
                 android:textSize="24sp" />
@@ -69,10 +71,11 @@
                 android:id="@+id/profile_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp"
                 android:text="@{user.email}"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -88,8 +91,8 @@
             android:padding="5dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
@@ -100,8 +103,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
+                android:fontFamily="@font/nunito_regular"
                 android:text="@string/account"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -115,8 +119,8 @@
             android:padding="5dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
@@ -127,8 +131,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
+                android:fontFamily="@font/nunito_regular"
                 android:text="@string/notifications"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -142,8 +147,8 @@
             android:padding="5dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
@@ -154,8 +159,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
+                android:fontFamily="@font/nunito_regular"
                 android:text="@string/contact_us"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -170,8 +176,8 @@
             android:padding="5dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
@@ -182,8 +188,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
+                android:fontFamily="@font/nunito_regular"
                 android:text="@string/privacy_policy"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -196,8 +203,8 @@
             android:padding="5dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
@@ -207,9 +214,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/nunito_regular"
                 android:padding="10dp"
                 android:text="@string/logout"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -219,9 +227,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:padding="10dp"
+            android:fontFamily="@font/nunito_bold"
             android:text="@string/made_with_by_pookiecoderz"
-            android:textColor="#0000AA"
-            android:textSize="14sp"
+            android:textColor="@color/pink"
+            android:textSize="16sp"
             android:textStyle="normal" />
     </LinearLayout>
 </layout>

@@ -31,21 +31,21 @@ class FoodLogFragment : Fragment() {
             navController.navigateUp()
         }
 
-        binding.btnAddBreakfast.setOnClickListener {
-            navController.navigate(R.id.action_foodLogFragment_to_preSnapFragment)
-        }
-
-        binding.btnAddLunch.setOnClickListener {
-            navController.navigate(R.id.action_foodLogFragment_to_preSnapFragment)
-        }
-
-        binding.btnAddSnack.setOnClickListener {
-            navController.navigate(R.id.action_foodLogFragment_to_preSnapFragment)
-        }
-
-        binding.btnAddDinner.setOnClickListener {
-            navController.navigate(R.id.action_foodLogFragment_to_preSnapFragment)
-        }
+//        binding.btnAddBreakfast.setOnClickListener {
+//            navController.navigate(R.id.action_foodLogFragment_to_preSnapFragment)
+//        }
+//
+//        binding.btnAddLunch.setOnClickListener {
+//            navController.navigate(R.id.action_foodLogFragment_to_preSnapFragment)
+//        }
+//
+//        binding.btnAddSnack.setOnClickListener {
+//            navController.navigate(R.id.action_foodLogFragment_to_preSnapFragment)
+//        }
+//
+//        binding.btnAddDinner.setOnClickListener {
+//            navController.navigate(R.id.action_foodLogFragment_to_preSnapFragment)
+//        }
 
         getTodayStats()
 

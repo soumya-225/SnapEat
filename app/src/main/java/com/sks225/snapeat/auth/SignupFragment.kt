@@ -1,13 +1,10 @@
 package com.sks225.snapeat.auth
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -39,37 +36,37 @@ class SignupFragment : Fragment() {
         viewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
 
         binding.etEmail.addTextChangedListener { viewModel.email.value = it.toString() }
-        binding.etPass.doAfterTextChanged { viewModel.pass.value = it.toString() }
-        binding.etConfirmPass.doAfterTextChanged { viewModel.confirmPass.value = it.toString() }
-        binding.etName.doAfterTextChanged { viewModel.name.value = it.toString() }
+        binding.etPassword.doAfterTextChanged { viewModel.pass.value = it.toString() }
+        binding.etPassword2.doAfterTextChanged { viewModel.confirmPass.value = it.toString() }
+        binding.etFullName.doAfterTextChanged { viewModel.name.value = it.toString() }
 
-        binding.tvChoosePic.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            launcher.launch(intent)
-        }
+//        binding.tvChoosePic.setOnClickListener {
+//            val intent = Intent(Intent.ACTION_PICK)
+//            intent.type = "image/*"
+//            launcher.launch(intent)
+//        }
 
-        binding.btnSignUp.setOnClickListener {
+        binding.btnSignup.setOnClickListener {
             binding.prg.visibility = View.VISIBLE
-            viewModel.signUp(binding, requireActivity()) {
+            viewModel.signUp(binding) {
                 Log.d("Test", "Reach")
                 navController.navigate(R.id.action_signupFragment_to_ageFragment)
             }
         }
 
-        binding.back.setOnClickListener {
-            navController.navigateUp()
-        }
+//        binding.back.setOnClickListener {
+//            navController.navigateUp()
+//        }
 
         return binding.root
     }
 
-    private val launcher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK && it.data != null) {
-                binding.done.visibility = View.VISIBLE
-                viewModel.uriAvail.value = true
-                viewModel.uri.value = it.data!!.data
-            }
-        }
+//    private val launcher =
+//        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+//            if (it.resultCode == Activity.RESULT_OK && it.data != null) {
+//                binding.done.visibility = View.VISIBLE
+//                viewModel.uriAvail.value = true
+//                viewModel.uri.value = it.data!!.data
+//            }
+//        }
 }
