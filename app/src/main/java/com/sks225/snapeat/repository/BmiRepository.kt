@@ -1,5 +1,6 @@
 package com.sks225.snapeat.repository
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.sks225.snapeat.model.BmiRecord
@@ -27,9 +28,8 @@ class BmiRepository {
             val snapshot = bmiRef.get().await()
             snapshot.getValue(BmiRecord::class.java)
         } catch (e: Exception) {
+            Log.e("BmiRepository", "Error fetching BMI record", e)
             null
         }
     }
-
-
 }

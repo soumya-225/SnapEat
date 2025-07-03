@@ -14,7 +14,7 @@ class WeightFragment : Fragment() {
     private lateinit var binding: FragmentWeightBinding
     private lateinit var np1: NumberPicker
     private lateinit var np2: NumberPicker
-    private var weight: Double = 0.0
+    private var weight: Double = 40.0
     private var weight1: Int = 40
     private var weight2: Int = 0
 

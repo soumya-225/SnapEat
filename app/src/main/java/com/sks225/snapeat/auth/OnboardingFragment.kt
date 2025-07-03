@@ -1,6 +1,5 @@
 package com.sks225.snapeat.auth
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +9,9 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.CompositePageTransformer
-import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.sks225.snapeat.R
 import com.sks225.snapeat.databinding.FragmentOnboardingBinding
-import kotlin.math.abs
 
 
 class OnboardingFragment : Fragment() {
@@ -34,33 +30,26 @@ class OnboardingFragment : Fragment() {
 
         val images = arrayOf(
             "https://res.cloudinary.com/deukzdr70/image/upload/v1750709900/ChatGPT_Image_Jun_24_2025_01_47_10_AM_vmbgcf.png",
-            //"https://res.cloudinary.com/deukzdr70/image/upload/v1729215336/ipns1fwakfyneaji8h59.png",
             "https://res.cloudinary.com/deukzdr70/image/upload/v1729215336/xvhc7sge7lc2s5yi7xve.png",
             "https://res.cloudinary.com/deukzdr70/image/upload/v1729215337/cwwcf3eqoidrrhrcdk24.png",
         )
 
         binding.viewPagerCarousel.adapter = HomeCarouselAdapter(images)
 
-//        val compositePageTransformer = CompositePageTransformer()
-//        compositePageTransformer.addTransformer(MarginPageTransformer((40 * Resources.getSystem().displayMetrics.density).toInt()))
-//        compositePageTransformer.addTransformer { page, position ->
-//            val r = 1 - abs(position)
-//            page.scaleY = (0.80f + r * 0.20f)
-//        }
-//        binding.viewPagerCarousel.setPageTransformer(compositePageTransformer)
-
         addDotsIndicator(images.size)
-        binding.viewPagerCarousel.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                updateDots(position)
-            }
-        })
+
+//        binding.viewPagerCarousel.registerOnPageChangeCallback(object :
+//            ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                super.onPageSelected(position)
+//                updateDots(position)
+//            }
+//        })
 
         binding.viewPagerCarousel.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
+                updateDots(position)
                 currentPage = position
                 if (currentPage == images.size - 1) {
                     binding.btnNext.visibility = View.VISIBLE

@@ -1,21 +1,20 @@
 package com.sks225.snapeat.viewModel
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.sks225.snapeat.model.HealthData
+import com.sks225.snapeat.repository.HealthRepository
 
 class HeightFragmentViewModel : ViewModel() {
-    private val userId = FirebaseAuth.getInstance().currentUser!!.uid
-    private val healthRef =
-        FirebaseDatabase.getInstance().reference.child("users").child(userId).child("health_data")
+    private val repository = HealthRepository()
+
+    private val _saveStatus = MutableLiveData<Pair<Boolean, String?>>()
+    val saveStatus: LiveData<Pair<Boolean, String?>> get() = _saveStatus
 
     fun saveHealthData(healthData: HealthData) {
-        healthRef.setValue(healthData).addOnSuccessListener {
-            Log.d("HeightFragmentViewModel", "Health data saved successfully")
-        }.addOnFailureListener {
-            Log.e("HeightFragmentViewModel", "Error saving health data", it)
+        repository.saveHealthData(healthData) { success, message ->
+            _saveStatus.postValue(Pair(success, message))
         }
     }
 }

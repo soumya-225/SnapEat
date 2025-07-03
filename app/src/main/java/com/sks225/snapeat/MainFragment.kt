@@ -8,78 +8,68 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.sks225.snapeat.adapter.AdapterViewPager
 import com.sks225.snapeat.databinding.FragmentMainBinding
-import com.sks225.snapeat.model.MealInfo
-import com.sks225.snapeat.repository.BmiRepository
-import com.sks225.snapeat.repository.UserRepository
 import com.sks225.snapeat.viewModel.MainFragmentViewModel
-import com.sks225.snapeat.viewModelFactory.MainFragmentViewModelFactory
-
 
 class MainFragment : Fragment() {
+
     private lateinit var binding: FragmentMainBinding
-    private lateinit var bottomNav: BottomNavigationView
-    private lateinit var pagerMain: ViewPager2
     private lateinit var viewModel: MainFragmentViewModel
-    private var fragmentArrList: ArrayList<Fragment> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val bmiRepository = BmiRepository()
-        val userRepository = UserRepository()
-        val factory = MainFragmentViewModelFactory(userRepository, bmiRepository)
-        viewModel = ViewModelProvider(this, factory)[MainFragmentViewModel::class.java]
-
         if (Firebase.auth.currentUser == null) {
             findNavController().navigate(R.id.action_mainFragment_to_onboardingFragment2)
-            return
+        } else {
+            viewModel = ViewModelProvider(requireActivity())[MainFragmentViewModel::class.java]
+            viewModel.fetchUser()
+            viewModel.fetchBmiData()
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainBinding.inflate(layoutInflater, container, false)
-        bottomNav = binding.bottomNavigationView
-        pagerMain = binding.pagerMain
+        binding = FragmentMainBinding.inflate(inflater, container, false)
+        setupViewPagerAndBottomNav()
+        return binding.root
+    }
 
-        fragmentArrList.add(HomeFragment(viewModel))
-        fragmentArrList.add(ReportFragment(viewModel))
-        fragmentArrList.add(ProfileFragment(viewModel))
+    private fun setupViewPagerAndBottomNav() {
+        val fragments = arrayListOf(
+            HomeFragment(),
+            ReportFragment(),
+            ProfileFragment()
+        )
 
-        val adapterViewPager = AdapterViewPager(requireActivity(), fragmentArrList)
-        pagerMain.adapter = adapterViewPager
+        binding.pagerMain.adapter = AdapterViewPager(requireActivity(),
+            fragments
+        )
 
-
-        pagerMain.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.pagerMain.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                when (position) {
-                    0 -> bottomNav.selectedItemId = R.id.home
-                    1 -> bottomNav.selectedItemId = R.id.report
-                    2 -> bottomNav.selectedItemId = R.id.profile
-                    else -> {}
+                binding.bottomNavigationView.selectedItemId = when (position) {
+                    0 -> R.id.home
+                    1 -> R.id.report
+                    2 -> R.id.profile
+                    else -> R.id.home
                 }
-                super.onPageSelected(position)
             }
         })
 
-        bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.home -> pagerMain.currentItem = 0
-                R.id.report -> pagerMain.currentItem = 1
-                R.id.profile -> pagerMain.currentItem = 2
-                else -> {}
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            binding.pagerMain.currentItem = when (item.itemId) {
+                R.id.home -> 0
+                R.id.report -> 1
+                R.id.profile -> 2
+                else -> 0
             }
             true
         }
-
-        return binding.root
     }
 }

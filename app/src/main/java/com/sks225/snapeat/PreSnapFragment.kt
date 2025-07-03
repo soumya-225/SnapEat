@@ -72,7 +72,7 @@ class PreSnapFragment : Fragment() {
             val items = userRepository.getMealsData().map {
                 SnappedFoodGridAdapter.Model(Uri.parse(it.imageUri), it.foodName)
             }
-            binding.rvPrevSnap.adapter = SnappedFoodGridAdapter(requireContext(), items)
+            binding.rvPrevSnap.adapter = SnappedFoodGridAdapter(items)
         }
 
         return binding.root

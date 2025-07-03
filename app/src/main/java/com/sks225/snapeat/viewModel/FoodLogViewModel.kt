@@ -1,6 +1,5 @@
 package com.sks225.snapeat.viewModel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -17,7 +16,7 @@ import kotlinx.coroutines.launch
 class FoodLogViewModel(
     private val userRepository: UserRepository,
     private val bmiRepository: BmiRepository,
-): ViewModel() {
+) : ViewModel() {
 
     fun getMealsData(callback: (List<MealInfo>, HealthData) -> Unit) {
         viewModelScope.launch {

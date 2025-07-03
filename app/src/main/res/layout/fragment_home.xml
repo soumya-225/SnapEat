@@ -432,15 +432,30 @@
                                         android:layout_gravity="center"
                                         android:src="@drawable/water" />
 
-                                    <com.ekn.gruzer.gaugelibrary.FullGauge
-                                        android:id="@+id/gauge_card3"
-                                        android:layout_width="120dp"
-                                        android:layout_height="120dp"
-                                        android:layout_margin="5dp"
-                                        app:layout_constraintBottom_toTopOf="@id/tv_water"
-                                        app:layout_constraintEnd_toEndOf="parent"
+                                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                                        android:id="@+id/progress_circular_water"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:max="6"
+                                        android:progress="0"
+                                        app:indicatorColor="@color/pink"
+                                        app:indicatorSize="100dp"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:trackColor="#15E91E63"
+                                        app:trackCornerRadius="10dp"
+                                        app:trackThickness="6dp" />
+
+<!--                                    <com.ekn.gruzer.gaugelibrary.FullGauge-->
+<!--                                        android:id="@+id/gauge_card3"-->
+<!--                                        android:layout_width="120dp"-->
+<!--                                        android:layout_height="120dp"-->
+<!--                                        android:layout_margin="5dp"-->
+<!--                                        app:layout_constraintBottom_toTopOf="@id/tv_water"-->
+<!--                                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                                        app:layout_constraintTop_toTopOf="parent" />-->
 
                                 </FrameLayout>
 
@@ -512,16 +527,20 @@
                                         android:layout_gravity="center"
                                         android:src="@drawable/playing" />
 
-                                    <com.ekn.gruzer.gaugelibrary.FullGauge
-                                        android:id="@+id/gauge_card4"
-                                        android:layout_width="120dp"
-                                        android:layout_height="120dp"
-                                        android:layout_margin="5dp"
-                                        app:layout_constraintBottom_toTopOf="@id/tv_workout"
-                                        app:layout_constraintEnd_toEndOf="parent"
+                                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                                        android:id="@+id/progress_circular_workout"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:max="6"
+                                        android:progress="0"
+                                        app:indicatorColor="@color/pink"
+                                        app:indicatorSize="100dp"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:trackColor="#15E91E63"
+                                        app:trackCornerRadius="10dp"
+                                        app:trackThickness="6dp" />
                                 </FrameLayout>
 
                                 <ImageButton

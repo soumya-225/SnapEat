@@ -12,17 +12,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.sks225.snapeat.databinding.FragmentProfileBinding
 import com.sks225.snapeat.viewModel.MainFragmentViewModel
 
+class ProfileFragment : Fragment() {
 
-class ProfileFragment(private var viewModel: MainFragmentViewModel) : Fragment() {
     private lateinit var binding: FragmentProfileBinding
+    private lateinit var viewModel: MainFragmentViewModel
     private val recipientEmail = "sks225dv@gmail.com"
-    private var photoUrl: String? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -30,29 +30,18 @@ class ProfileFragment(private var viewModel: MainFragmentViewModel) : Fragment()
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-        viewModel.user.observe(viewLifecycleOwner) {
-            binding.user = it
-            photoUrl = it?.photoUrl
-            Glide.with(this).load(photoUrl).into(binding.profilePic)
-        }
 
-        /*binding.profilePic.setOnClickListener {
-            val dialogFragment = ProfilePicDialogFragment().apply {
-                photoUrl?.let { it1 -> setProfilePicUrl(it1) } // Assuming you set the URL as a tag or retrieve it from the ViewModel
-                setOnChangePicClickListener {
-                    Toast.makeText(context, "Change Pic Clicked", Toast.LENGTH_SHORT).show()
-                    // Code to change the profile picture
-                }
-                setOnRemovePicClickListener {
-                    Toast.makeText(context, "Remove Pic Clicked", Toast.LENGTH_SHORT).show()
-                    // Code to remove the profile picture
-                }
-            }
-            dialogFragment.show(parentFragmentManager, "ProfilePicDialog")
-        }*/
+        viewModel = ViewModelProvider(requireActivity())[MainFragmentViewModel::class.java]
 
+        setupUI()
+        observeData()
+
+        return binding.root
+    }
+
+    private fun setupUI() {
         binding.account.setOnClickListener {
-            //intent to edit account details activity
+            // Navigate or open account details activity
         }
 
         binding.notification.setOnClickListener {
@@ -79,20 +68,22 @@ class ProfileFragment(private var viewModel: MainFragmentViewModel) : Fragment()
             Firebase.auth.signOut()
             requireActivity().finishAffinity()
         }
+    }
 
-        return binding.root
+    private fun observeData() {
+        viewModel.user.observe(viewLifecycleOwner) { user ->
+            binding.user = user
+            // If you want to load profile picture:
+            // user?.photoUrl?.let { Glide.with(this).load(it).into(binding.profilePic) }
+        }
     }
 
     private fun showPrivacyPolicyDialog(context: Context) {
-        val dialogBuilder = AlertDialog.Builder(context)
-        dialogBuilder.setTitle("Privacy Policy")
+        AlertDialog.Builder(context)
+            .setTitle("Privacy Policy")
             .setMessage(R.string.privacyPolicy)
-            .setNeutralButton("OK") { dialog, _ ->
-                dialog.dismiss()
-            }
-
-
-        val dialog = dialogBuilder.create()
-        dialog.show()
+            .setNeutralButton("OK") { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
     }
 }

@@ -9,18 +9,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.sks225.snapeat.R
 import com.sks225.snapeat.databinding.FragmentHeightBinding
 import com.sks225.snapeat.model.HealthData
 import com.sks225.snapeat.viewModel.HeightFragmentViewModel
 
 class HeightFragment : Fragment() {
+
     private lateinit var binding: FragmentHeightBinding
-    private var height: Int = 0
+    private lateinit var viewModel: HeightFragmentViewModel
     private var height1: Int = 5
     private var height2: Int = 0
-    private lateinit var healthData: HealthData
-    private lateinit var viewModel: HeightFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,15 +29,17 @@ class HeightFragment : Fragment() {
         binding = FragmentHeightBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[HeightFragmentViewModel::class.java]
 
-        val weight = navArgs<HeightFragmentArgs>().value.weight
-        val age = navArgs<HeightFragmentArgs>().value.age
+        val args = navArgs<HeightFragmentArgs>().value
+        val weight = args.weight
+        val age = args.age
 
-        binding.btnContinue.setOnClickListener{
-            Log.d("Test", "$healthData Origin")
-            viewModel.saveHealthData(healthData)
-            findNavController().navigate(R.id.action_heightFragment_to_homeFragment)
-        }
+        setupNumberPickers(weight, age)
+        setupObservers()
 
+        return binding.root
+    }
+
+    private fun setupNumberPickers(weight: Float, age: Int) {
         binding.numberPicker1.minValue = 1
         binding.numberPicker1.maxValue = 8
         binding.numberPicker1.value = 5
@@ -46,21 +48,32 @@ class HeightFragment : Fragment() {
         binding.numberPicker2.maxValue = 11
         binding.numberPicker2.value = 0
 
+        val computeHeight = {
+            val heightInCm = ((height1 * 12 + height2) * 2.54).toInt()
+            HealthData(weight, heightInCm, age)
+        }
+
         binding.numberPicker1.setOnValueChangedListener { _, _, newVal ->
             height1 = newVal
-            height = ((height1 * 12 + height2) * 2.54).toInt()
-            healthData = HealthData(weight, height,age)
         }
 
         binding.numberPicker2.setOnValueChangedListener { _, _, newVal ->
             height2 = newVal
-            height = ((height1 * 12 + height2) * 2.54).toInt()
-            healthData = HealthData(weight, height,age)
         }
 
-        height = ((height1 * 12 + height2) * 2.54).toInt()
-        healthData = HealthData(weight, height,age)
+        binding.btnContinue.setOnClickListener {
+            val data = computeHeight()
+            viewModel.saveHealthData(data)
+        }
+    }
 
-        return binding.root
+    private fun setupObservers() {
+        viewModel.saveStatus.observe(viewLifecycleOwner) { (success, message) ->
+            if (success) {
+                findNavController().navigate(R.id.action_heightFragment_to_homeFragment)
+            } else {
+                Snackbar.make(binding.root, message ?: "Failed to save health data", Snackbar.LENGTH_LONG).show()
+            }
+        }
     }
 }
