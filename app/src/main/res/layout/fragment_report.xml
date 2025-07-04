@@ -114,6 +114,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_total_calories"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nunito_bold"
@@ -136,6 +137,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_avg_calories"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nunito_bold"
@@ -155,7 +157,7 @@
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/bar_chart"
                     android:layout_width="match_parent"
-                    android:layout_height="240dp"
+                    android:layout_height="300dp"
                     android:layout_margin="16dp"
                     android:layout_marginTop="10dp" />
             </LinearLayout>

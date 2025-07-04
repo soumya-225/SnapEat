@@ -17,7 +17,7 @@ import java.util.Calendar
 
 class MainFragmentViewModel(
     private val userRepository: UserRepository = UserRepository(),
-    private val bmiRepository: BmiRepository = BmiRepository()
+    private val bmiRepository: BmiRepository = BmiRepository(),
 ) : ViewModel() {
 
     private val _user = MutableLiveData<User?>()
@@ -28,6 +28,9 @@ class MainFragmentViewModel(
 
     private val _todayStats = MutableLiveData<TodayStats?>()
     val todayStats: LiveData<TodayStats?> get() = _todayStats
+
+    private val _lastWeekCalories = MutableLiveData<List<Double>>()
+    val lastWeekCalories: LiveData<List<Double>> get() = _lastWeekCalories
 
     fun fetchUser() {
         viewModelScope.launch {
@@ -82,6 +85,9 @@ class MainFragmentViewModel(
                     set(Calendar.MILLISECOND, 0)
                 }.timeInMillis
 
+                val lastWeekCalories = MutableList(7) { 0.0 }
+                var hasLastWeekData = false
+
                 for (meal in meals) {
                     val mealDay = Calendar.getInstance().apply {
                         timeInMillis = meal.timeMillis
@@ -98,6 +104,12 @@ class MainFragmentViewModel(
                         protein += meal.foodProtein
                         fiber += meal.foodFiber
                     }
+
+                    val daysAgo = ((today - mealDay) / (1000 * 60 * 60 * 24)).toInt()
+                    if (daysAgo in 0..6) {
+                        lastWeekCalories[daysAgo] += meal.foodCalories
+                        hasLastWeekData = true
+                    }
                 }
 
                 _todayStats.postValue(
@@ -109,6 +121,9 @@ class MainFragmentViewModel(
                         fiber, fiberRequired
                     )
                 )
+
+                if (hasLastWeekData)
+                    _lastWeekCalories.postValue(lastWeekCalories)
             } catch (e: Exception) {
                 Log.e("MainFragmentViewModel", "Error computing today stats", e)
             }

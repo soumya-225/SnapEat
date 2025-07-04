@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import androidx.core.net.toUri
 
 class PostSnapFragment : Fragment() {
 
@@ -36,7 +37,7 @@ class PostSnapFragment : Fragment() {
     ): View {
         binding = FragmentPostSnapBinding.inflate(inflater, container, false)
 
-        imageUri = Uri.parse(args.imageUri)
+        imageUri = args.imageUri.toUri()
         binding.snapImage.setImageURI(imageUri)
         binding.tvTime.text = getTimeString(snapTime)
 
@@ -126,13 +127,13 @@ class PostSnapFragment : Fragment() {
 }
 
 class SimpleItemSelectedListener(
-    private val onSelected: (position: Int) -> Unit
+    private val onSelected: (position: Int) -> Unit,
 ) : AdapterView.OnItemSelectedListener {
     override fun onItemSelected(
         parent: AdapterView<*>,
         view: View?,
         position: Int,
-        id: Long
+        id: Long,
     ) = onSelected(position)
 
     override fun onNothingSelected(parent: AdapterView<*>) = Unit
