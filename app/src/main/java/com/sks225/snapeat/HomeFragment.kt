@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity())[MainFragmentViewModel::class.java]
@@ -83,7 +83,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeData() {
-        viewModel.user.observe(viewLifecycleOwner) { binding.user = it }
+        viewModel.user.observe(viewLifecycleOwner) {
+            binding.user = it?.copy(name = it.name?.trim()?.split(" ")?.firstOrNull() ?: "")
+        }
 
         viewModel.todayStats.observe(viewLifecycleOwner) { stats ->
             stats?.let {
@@ -121,7 +123,7 @@ class HomeFragment : Fragment() {
             else -> "Carbs"
         }
 
-        val foodList = when (suggestion) {
+        val foodMap = when (suggestion) {
             "Protein" -> proteinFood
             "Fiber" -> fiberFood
             else -> carbFood
@@ -131,7 +133,7 @@ class HomeFragment : Fragment() {
             "It seems you had less $suggestion food\nHere are some $suggestion rich foods..."
         binding.rvFood.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvFood.adapter = SuggestedFoodAdapter(foodList)
+        binding.rvFood.adapter = SuggestedFoodAdapter(foodMap)
     }
 
     private fun getGreeting(): String {

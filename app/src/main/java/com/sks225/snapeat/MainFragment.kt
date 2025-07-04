@@ -62,6 +62,11 @@ class MainFragment : Fragment() {
             }
         })
 
+        binding.bottomNavigationView.setOnApplyWindowInsetsListener { view, insets ->
+            view.setPadding(0, 0, 0, 0)
+            insets
+        }
+
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             binding.pagerMain.currentItem = when (item.itemId) {
                 R.id.home -> 0

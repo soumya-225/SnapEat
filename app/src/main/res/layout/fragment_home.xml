@@ -12,9 +12,9 @@
 
     <FrameLayout
         android:id="@+id/fl_home"
-        android:background="#15FB629A"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#15FB629A">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -57,6 +57,7 @@
                                 android:id="@+id/tv_user_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
+                                android:fontFamily="@font/nunito_bold"
                                 android:gravity="center"
                                 android:text="@{user.name}"
                                 android:textColor="@color/black"
@@ -447,15 +448,15 @@
                                         app:trackCornerRadius="10dp"
                                         app:trackThickness="6dp" />
 
-<!--                                    <com.ekn.gruzer.gaugelibrary.FullGauge-->
-<!--                                        android:id="@+id/gauge_card3"-->
-<!--                                        android:layout_width="120dp"-->
-<!--                                        android:layout_height="120dp"-->
-<!--                                        android:layout_margin="5dp"-->
-<!--                                        app:layout_constraintBottom_toTopOf="@id/tv_water"-->
-<!--                                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                                        app:layout_constraintTop_toTopOf="parent" />-->
+                                    <!--                                    <com.ekn.gruzer.gaugelibrary.FullGauge-->
+                                    <!--                                        android:id="@+id/gauge_card3"-->
+                                    <!--                                        android:layout_width="120dp"-->
+                                    <!--                                        android:layout_height="120dp"-->
+                                    <!--                                        android:layout_margin="5dp"-->
+                                    <!--                                        app:layout_constraintBottom_toTopOf="@id/tv_water"-->
+                                    <!--                                        app:layout_constraintEnd_toEndOf="parent"-->
+                                    <!--                                        app:layout_constraintStart_toStartOf="parent"-->
+                                    <!--                                        app:layout_constraintTop_toTopOf="parent" />-->
 
                                 </FrameLayout>
 
@@ -579,10 +580,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
-            android:textColor="@color/white"
             android:backgroundTint="#90FF006B"
             android:drawableLeft="@drawable/baseline_camera_24"
-            android:text="Snap" />
+            android:text="Snap"
+            android:textColor="@color/white" />
     </FrameLayout>
 
 

@@ -2,8 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
-//    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.24"
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.2.0"
 
     id("com.google.gms.google-services")
     id("androidx.navigation.safeargs.kotlin")
@@ -11,12 +10,12 @@ plugins {
 
 android {
     namespace = "com.sks225.snapeat"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.sks225.snapeat"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -40,11 +39,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -79,9 +78,6 @@ dependencies {
 
     implementation(libs.glide)
     implementation(libs.gson)
-    implementation("com.cloudinary:cloudinary-android:2.5.0")
-    implementation("com.cloudinary:cloudinary-android-download:2.5.0")
-    implementation("com.cloudinary:cloudinary-android-preprocess:2.5.0")
     implementation(libs.number.picker)
     implementation(platform(libs.firebase.bom))
 }

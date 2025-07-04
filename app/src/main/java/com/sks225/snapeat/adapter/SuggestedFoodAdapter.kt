@@ -6,10 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.sks225.snapeat.R
 
-class SuggestedFoodAdapter(private var foodList: Map<String, String>) :
+class SuggestedFoodAdapter(private var foodMap: Map<String, Int>) :
     RecyclerView.Adapter<SuggestedFoodAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -18,26 +17,20 @@ class SuggestedFoodAdapter(private var foodList: Map<String, String>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val food = foodList.entries.toList()[position]
+        val food = foodMap.entries.toList()[position]
         holder.bind(food)
     }
 
     override fun getItemCount(): Int {
-        return foodList.size
+        return foodMap.size
     }
-
-    fun setData(newList: Map<String, String>) {
-        foodList = newList
-        notifyDataSetChanged()
-    }
-
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageView: ImageView = itemView.findViewById(R.id.snap_item_image)
         private val textView: TextView = itemView.findViewById(R.id.snap_food_name)
 
-        fun bind(food: Map.Entry<String, String>) {
-            Glide.with(itemView).load(food.value).into(imageView)
+        fun bind(food: Map.Entry<String, Int>) {
+            imageView.setImageResource(food.value)
             textView.text = food.key
         }
     }

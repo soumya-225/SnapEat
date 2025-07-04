@@ -6,7 +6,7 @@ data class PostSnapModel(
     val measures: List<AltMeasure> = listOf(
         AltMeasure(
             measure = "Detecting",
-            qty = 0,
+            qty = 0.0,
             seq = 0,
             serving_weight = 0.0
         )
