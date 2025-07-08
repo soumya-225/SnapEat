@@ -26,5 +26,16 @@
 - **Backend**: Flask (ML model deployment)
 - **Cloud**: Firebase Authentication, Realtime Database, and Storage
 
----
+## Screenshots
 
+| Home Screen | Report Screen | Profile Screen |
+|-------------|---------------|----------------|
+| ![Home Screen](assets/home_screen.jpg) | ![Report Screen](assets/report_screen.jpg) | ![Profile Screen](assets/profile_screen.jpg) |
+
+| Snap Screen | Capture Mango | Post Snap 1 |
+|-------------|----------------|---------------|
+| ![Snap Screen](assets/snap_screen.jpg) | ![Capture Mango](assets/capture_mango.jpg) | ![Post Snap 1](assets/post_snap.jpg) |
+
+| Post Snap 2 | Post Snap 3 | Track Water |
+|-------------|--------------|--------------|
+| ![Post Snap 2](assets/post_snap_2.jpg) | ![Post Snap 3](assets/post_snap_3.jpg) | ![Track Water](assets/track_water.jpg) |
