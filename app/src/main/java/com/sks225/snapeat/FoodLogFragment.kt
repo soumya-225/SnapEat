@@ -74,6 +74,7 @@ class FoodLogFragment : Fragment() {
             var fat = 0.0
             var protein = 0.0
             var fiber = 0.0
+
             for (meal in meals) {
                 if (!isToday(meal.timeMillis))
                     continue
@@ -87,7 +88,7 @@ class FoodLogFragment : Fragment() {
 
             binding.rvTodayFoods.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            binding.rvTodayFoods.adapter = FoodLogAdapter(meals)
+            binding.rvTodayFoods.adapter = FoodLogAdapter(meals.filter { isToday(it.timeMillis) })
 
             binding.tvCal.text = "${calories.toInt()} / $caloriesRequired"
             binding.tvCarb.text = "Carbs: ${carbs.toInt()} g / ${carbsRequired.toInt()} g"

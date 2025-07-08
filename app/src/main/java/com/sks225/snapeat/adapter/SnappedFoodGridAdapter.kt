@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sks225.snapeat.R
 
 class SnappedFoodGridAdapter(private val items: List<Model>) :
@@ -29,7 +30,7 @@ class SnappedFoodGridAdapter(private val items: List<Model>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.imageView.setImageURI(items[position].imageUri)
+        Glide.with(holder.imageView).load(items[position].imageUri).into(holder.imageView)
         holder.foodName.text = items[position].foodName
     }
 
