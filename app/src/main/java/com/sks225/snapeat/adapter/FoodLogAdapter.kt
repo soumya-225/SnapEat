@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sks225.snapeat.R
 import com.sks225.snapeat.model.MealInfo
 
@@ -29,7 +29,7 @@ class FoodLogAdapter(private val items: List<MealInfo>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.imageView.setImageURI(items[position].imageUri.toUri())
+        Glide.with(holder.imageView).load(items[position].imageUri).into(holder.imageView)
         holder.foodName.text = items[position].foodName
     }
 
